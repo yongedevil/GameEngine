@@ -1,3 +1,11 @@
+# Common files to ignore
+*.swp
+*.zip
+*.cachefile
+*.cache
+*.ccgame
+*.tmp
+
 # Compiled Object files
 *.slo
 *.lo
@@ -26,3 +34,7 @@
 *.exe
 *.out
 *.app
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
