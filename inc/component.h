@@ -5,12 +5,21 @@
 #include <ctime>
 #include <vector>
 
-#include "entity.h"
+#include "typedeff.h"
 
+/* Component class
+ * This class repesents a component that adds functionality to an Entity
+ * Components are controlled and owned by Systems
+ *
+ * Child classes must define the following static functions:
+ * static ComponentType type();
+ * static System * system();
+ *
+ */
 namespace GameEngine
 {
-
 	class Entity;
+	class System;
 
 	class Component
 	{
@@ -21,7 +30,8 @@ namespace GameEngine
 		\**********/
 	private:
 		ComponentID m_id;
-		Entity * mptr_parent;
+		Entity * m_ent;
+		bool m_active;
 
 
 		/************\
@@ -31,25 +41,21 @@ namespace GameEngine
 		Component();
 		virtual ~Component();
 
-		virtual void init() = 0;
-		virtual void update(float dt) = 0;
-		virtual void shutdown() = 0;
+		virtual void init(Entity * ent);
+		void update(float dt);
+		virtual void destory();
 
-		static eComponentTypes getTypeS() { return eCT_BASE; }
-
-		virtual eComponentTypes getType() const = 0;
 		ComponentID getID() const { return m_id; }
+		virtual ComponentType getType() const = 0;
 
-		Entity const* parent() const { return mptr_parent; }
-		Entity * parent() { return mptr_parent; }
+		bool getActive() const { return m_active; }
+		void setActive(bool active) { m_active = active; }
+
+		Entity * getEntity() { return m_ent; }
+		Entity const* getEntity() const { return m_ent; }
 
 	protected:
-		void attach(Entity * parent);
-
-		virtual std::vector<eComponentTypes> getDependencies() const { return std::vector<eComponentTypes>(); }
-
-		virtual void checkDependencies() = 0;
-		Component * checkDependency(eComponentTypes type);
+		virtual void updateComponent(float dt) = 0;
 	};
 }
 

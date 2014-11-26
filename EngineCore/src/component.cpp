@@ -1,43 +1,36 @@
 #include "component.h"
+#include "entity.h"
 
 using namespace GameEngine;
 
 Component::Component() :
-mptr_parent(NULL)
+m_id((ComponentID)std::clock()),
+m_ent(NULL),
+m_active(false)
 {
-	m_id = (ComponentID)std::clock();
-	mptr_parent = NULL;
 }
 
 Component::~Component()
 {
 }
 
-void Component::attach(Entity * parent)
+void Component::init(Entity * ent)
 {
-	if (NULL != parent)
+	m_ent = ent;
+	m_active = true;
+}
+
+void Component::update(float dt)
+{
+	if (m_active)
+		updateComponent(dt);
+}
+
+void Component::destory()
+{
+	if (m_ent)
 	{
-		mptr_parent = parent;
-		checkDependencies();
+		m_ent->removeComponent(this);
 	}
 }
 
-void Component::checkDependencies()
-{
-	std::vector<eComponentTypes> dependencies = getDependencies();
-	for (std::vector<eComponentTypes>::iterator it = dependencies.begin(); it != dependencies.end(); it++)
-	{
-		checkDependency(*it);
-	}
-}
-
-Component * Component::checkDependency(eComponentTypes type)
-{
-	Component * ptr_dependency = mptr_parent->getComponentType(type);
-	if (NULL == ptr_dependency)
-	{
-		//add dependency to Entity here
-	}
-
-	return ptr_dependency;
-}

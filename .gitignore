@@ -35,6 +35,9 @@
 *.out
 *.app
 
+# User files
+*.user
+
 # Build results
 [Dd]ebug/
 [Rr]elease/

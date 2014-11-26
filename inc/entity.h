@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "typedeff.h"
-#include "component.h"
 
 namespace GameEngine
 {
@@ -12,17 +11,16 @@ namespace GameEngine
 	
 	class Entity
 	{
-	protected:
+	private:
 		typedef std::vector<Component*> ComponentList;
-		typedef ComponentList::iterator ComponentList_it;
-
 
 		/**********\
 		* Fields *
 		\**********/
 	private:
 		EntityID m_id;
-		ComponentList * mptr_componentList;
+		bool m_active;
+		ComponentList * m_componentList;
 
 
 		/************\
@@ -32,14 +30,22 @@ namespace GameEngine
 		Entity();
 		virtual ~Entity();
 
-		EntityID getID() const { return m_id; }
+		void init();
+		void update(float dt);
+		void destroy();
 
-		Component * getComponentType(eComponentTypes type);
-		Component * getComponentID(ComponentID id);
+		EntityID getID() const { return m_id; }
+		bool getActive() const { return m_active; }
+		void setActive(bool active) { m_active = active; }
+
+		template<class T>
+		T * getComponent();
+		Component * getComponent(ComponentID id);
+
+		void addComponent(Component * comp);
+		void removeComponent(Component * comp);
 
 	protected:
-		bool addComponent(Component * component);
-
 
 	};
 }

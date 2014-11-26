@@ -11,8 +11,7 @@ namespace GameEngine
 	class ComponentManager
 	{
 	private:
-		eComponentTypes m_componentType;
-		std::vector<T> * mptr_componentList;
+		std::vector<T> * m_componentList;
 
 	public:
 		ComponentManager();
@@ -20,7 +19,7 @@ namespace GameEngine
 
 		void inti();
 
-		eComponentTypes getComponentType() { return m_componentType; }
+		ComponentType getComponentType() { return T::type(); }
 
 		typename std::vector<T>::iterator begin();
 		typename std::vector<T>::iterator end();

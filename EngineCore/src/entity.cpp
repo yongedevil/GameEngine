@@ -1,34 +1,91 @@
 #include "entity.h"
+#include "component.h"
 
 using namespace GameEngine;
 
-Entity::Entity()
+Entity::Entity() :
+m_id((EntityID)std::clock()),
+m_active(false)
 {
-	m_id = (EntityID)std::clock();
-	mptr_componentList = new std::vector<Component *>();
+	m_componentList = new std::vector<Component *>();
 }
 
 Entity::~Entity()
 {
-	for (ComponentList_it it = mptr_componentList->begin(); it != mptr_componentList->end(); it++)
-	{
-		//detach components here
-		(*it)->shutdown();
+}
 
+void Entity::init()
+{
+	m_active = true;
+}
+
+void Entity::update(float dt)
+{
+	if (m_active)
+	{
+		for (ComponentList::iterator it = m_componentList->begin(); it != m_componentList->end(); ++it)
+		{
+			(*it)->update(dt);
+		}
 	}
 }
 
-Component * Entity::getComponentType(eComponentTypes type)
+void Entity::destroy()
 {
-	return NULL;
+	for (ComponentList::iterator it = m_componentList->begin(); it != m_componentList->end(); it++)
+	{
+		//detach components here
+		(*it)->destory();
+	}
+	m_componentList->clear();
 }
 
-Component * Entity::getComponentID(ComponentID id)
+template<class T>
+T * Entity::getComponent()
 {
-	return NULL;
+	T * comp = NULL;
+	for (ComponentList::iterator it = m_componentList->begin(); NULL == comp && it != m_componentList->end(); ++it)
+	{
+		if ((*it)->getType() == T::type())
+		{
+			comp = *it;
+		}
+	}
+	return comp;
 }
 
-bool Entity::addComponent(Component * component)
+Component * Entity::getComponent(ComponentID id)
 {
-	return true;
+	Component * comp = NULL;
+	for (ComponentList::iterator it = m_componentList->begin(); NULL == comp && it != m_componentList->end(); ++it)
+	{
+		if ((*it)->getID() == id)
+		{
+			comp = *it;
+		}
+	}
+
+	return comp;
+}
+
+void Entity::addComponent(Component * comp)
+{
+	//if comp isn't NULL and not already attached
+	if (NULL != comp && NULL == getComponent(comp->getID()))
+	{
+		m_componentList->push_back(comp);
+	}
+}
+
+void Entity::removeComponent(Component * comp)
+{
+	bool compFound = false;
+	for (ComponentList::iterator it = m_componentList->begin(); !compFound && it != m_componentList->end(); ++it)
+	{
+		if ((*it) == comp)
+		{
+			compFound = true;
+			m_componentList->erase(it);
+		}
+	}
 }
