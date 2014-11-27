@@ -1,5 +1,5 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef _ENTITY_H
+#define _ENTITY_H
 
 #include <vector>
 
@@ -34,6 +34,7 @@ namespace GameEngine
 		void update(float dt);
 		void destroy();
 
+
 		EntityID getID() const { return m_id; }
 		bool getActive() const { return m_active; }
 		void setActive(bool active) { m_active = active; }
@@ -44,6 +45,10 @@ namespace GameEngine
 
 		void addComponent(Component * comp);
 		void removeComponent(Component * comp);
+
+
+		static EntityType type() { return EntityType::ENTIT_BASE; }
+		virtual EntityType getType() { return EntityType::ENTIT_BASE; }
 
 	protected:
 

@@ -3,6 +3,7 @@
 
 #include <vector>
 
+#include "typedeff.h"
 #include "component.h"
 
 namespace GameEngine
@@ -11,7 +12,9 @@ namespace GameEngine
 	class ComponentManager
 	{
 	private:
-		std::vector<T> * m_componentList;
+		typedef std::vector<T> ComponentList;
+
+		ComponentList m_componentList;
 
 	public:
 		ComponentManager();
@@ -21,10 +24,10 @@ namespace GameEngine
 
 		ComponentType getComponentType() { return T::type(); }
 
-		typename std::vector<T>::iterator begin();
-		typename std::vector<T>::iterator end();
-		typename std::vector<T>::const_iterator cbegin() const;
-		typename std::vector<T>::const_iterator cend() const;
+		typename ComponentList::iterator begin();
+		typename ComponentList::iterator end();
+		typename ComponentList::const_iterator cbegin() const;
+		typename ComponentList::const_iterator cend() const;
 
 	};
 
@@ -32,19 +35,16 @@ namespace GameEngine
 	template<class T>
 	ComponentManager<T>::ComponentManager()
 	{
-		mptr_componentList = new std::vector<T>();
-		m_componentType = T::getTypeS();
+		m_componentList = ComponentList();
 	}
 
 	template<class T>
 	ComponentManager<T>::~ComponentManager()
 	{
-		for (typename std::vector<T>::iterator it = begin(); it != end(); it++)
+		for (typename ComponentList::iterator it = begin(); it != end(); it++)
 		{
-			it->shutdown();
+			it->destory();
 		}
-
-		delete mptr_componentList;
 	}
 
 
@@ -54,27 +54,27 @@ namespace GameEngine
 	}
 
 	template<class T>
-	typename std::vector<T>::iterator ComponentManager<T>::begin()
+	typename ComponentList::iterator ComponentManager<T>::begin()
 	{
-		return mptr_comonentList->begin();
+		return m_componentList->begin();
 	}
 
 	template<class T>
-	typename std::vector<T>::iterator ComponentManager<T>::end()
+	typename ComponentList::iterator ComponentManager<T>::end()
 	{
-		return mptr_componentList->end();
+		return m_componentList->end();
 	}
 
 	template<class T>
-	typename std::vector<T>::const_iterator ComponentManager<T>::cbegin() const
+	typename ComponentList::const_iterator ComponentManager<T>::cbegin() const
 	{
-		return mptr_comonentList->cbegin();
+		return m_componentList->cbegin();
 	}
 
 	template<class T>
-	typename std::vector<T>::const_iterator ComponentManager<T>::cend() const
+	typename ComponentList::const_iterator ComponentManager<T>::cend() const
 	{
-		return mptr_componentList->cend();
+		return m_componentList->cend();
 	}
 
 

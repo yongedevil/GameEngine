@@ -27,6 +27,9 @@ namespace GameEngine
 		virtual void update(float dt) = 0;
 		virtual void shutdown() = 0;
 
+		template<class T>
+		T createComponet<T>()
+
 	};
 }
 

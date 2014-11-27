@@ -1,5 +1,5 @@
-#ifndef MESSAGE_H
-#define MESSAGE_H
+#ifndef _MESSAGE_H
+#define _MESSAGE_H
 
 namespace GameEngine
 {
