@@ -20,10 +20,10 @@ void Component::init(Entity * ent)
 	m_active = true;
 }
 
-void Component::update(float dt)
+void Component::updateComponent(float dt)
 {
 	if (m_active)
-		updateComponent(dt);
+		update(dt);
 }
 
 void Component::destory()

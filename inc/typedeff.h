@@ -18,6 +18,7 @@ namespace GameEngine
 	enum class ComponentType : short
 	{
 		COMPONENT_BASE,
+		COMPONENT_TRANSFORM,
 		NUM_TYPES
 	};
 }

@@ -8,27 +8,36 @@
 
 namespace GameEngine
 {
-	template<class T>
-	class ComponentManager
+	class iComponentManager
 	{
-	private:
+		virtual ComponentType getType() = 0;
+
+		virtual Component * addComponent() = 0;
+		virtual void removeComponent(Component * component) = 0;
+	};
+
+	template<class T>
+	class ComponentManager : iComponentManager
+	{
+	public:
 		typedef std::vector<T> ComponentList;
 
+	private:
 		ComponentList m_componentList;
 
 	public:
 		ComponentManager();
 		~ComponentManager();
 
-		void inti();
-
-		ComponentType getComponentType() { return T::type(); }
+		ComponentType getType() { return T::type(); }
 
 		typename ComponentList::iterator begin();
 		typename ComponentList::iterator end();
 		typename ComponentList::const_iterator cbegin() const;
 		typename ComponentList::const_iterator cend() const;
 
+		Component * addComponent();
+		void removeComponent(Component * component);
 	};
 
 
@@ -47,34 +56,51 @@ namespace GameEngine
 		}
 	}
 
-
 	template<class T>
-	void ComponentManager<T>::inti()
-	{
-	}
-
-	template<class T>
-	typename ComponentList::iterator ComponentManager<T>::begin()
+	typename ComponentManager<T>::ComponentList::iterator ComponentManager<T>::begin()
 	{
 		return m_componentList->begin();
 	}
 
 	template<class T>
-	typename ComponentList::iterator ComponentManager<T>::end()
+	typename ComponentManager<T>::ComponentList::iterator ComponentManager<T>::end()
 	{
 		return m_componentList->end();
 	}
 
 	template<class T>
-	typename ComponentList::const_iterator ComponentManager<T>::cbegin() const
+	typename ComponentManager<T>::ComponentList::const_iterator ComponentManager<T>::cbegin() const
 	{
 		return m_componentList->cbegin();
 	}
 
 	template<class T>
-	typename ComponentList::const_iterator ComponentManager<T>::cend() const
+	typename ComponentManager<T>::ComponentList::const_iterator ComponentManager<T>::cend() const
 	{
 		return m_componentList->cend();
+	}
+
+	template<class T>
+	Component * ComponentManager<T>::addComponent()
+	{
+		T * comp = new T();
+		m_componentList.push_back(comp);
+
+		return comp;
+	}
+
+	template<class T>
+	void ComponentManager<T>::removeComponent(Component * component)
+	{
+		bool compFound = false;
+		for (ComponentList::iterator it = begin(); !compFound && it != end(); it++)
+		{
+			if (*it == *component)
+			{
+				it->destroy();
+				m_componentList.erase(it);
+			}
+		}
 	}
 
 

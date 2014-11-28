@@ -19,15 +19,20 @@ void Entity::init()
 	m_active = true;
 }
 
-void Entity::update(float dt)
+void Entity::updateEntity(float dt)
 {
 	if (m_active)
 	{
 		for (ComponentList::iterator it = m_componentList->begin(); it != m_componentList->end(); ++it)
 		{
-			(*it)->update(dt);
+			(*it)->updateComponent(dt);
 		}
+		update(dt);
 	}
+}
+
+void Entity::update(float dt)
+{
 }
 
 void Entity::destroy()
@@ -38,20 +43,6 @@ void Entity::destroy()
 		(*it)->destory();
 	}
 	m_componentList->clear();
-}
-
-template<class T>
-T * Entity::getComponent()
-{
-	T * comp = NULL;
-	for (ComponentList::iterator it = m_componentList->begin(); NULL == comp && it != m_componentList->end(); ++it)
-	{
-		if ((*it)->getType() == T::type())
-		{
-			comp = *it;
-		}
-	}
-	return comp;
 }
 
 Component * Entity::getComponent(ComponentID id)
@@ -66,15 +57,6 @@ Component * Entity::getComponent(ComponentID id)
 	}
 
 	return comp;
-}
-
-void Entity::addComponent(Component * comp)
-{
-	//if comp isn't NULL and not already attached
-	if (NULL != comp && NULL == getComponent(comp->getID()))
-	{
-		m_componentList->push_back(comp);
-	}
 }
 
 void Entity::removeComponent(Component * comp)

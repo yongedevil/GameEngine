@@ -27,6 +27,9 @@
     <ClCompile Include="src\entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\comp_transform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inc\typedeff.h">
@@ -59,13 +62,13 @@
     <ClInclude Include="..\inc\comp_transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\vectorGeneric.h">
+    <ClInclude Include="..\inc\entityManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\entityManager.h">
+    <ClInclude Include="..\inc\quaternion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
