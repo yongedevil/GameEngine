@@ -11,9 +11,10 @@
  * This class repesents a component that adds functionality to an Entity
  * Components are controlled and owned by Systems
  *
- * Child classes must define the following static functions:
- * static ComponentType type();
- * static System * system();
+ * Derived classes must define the following static fields and methods:
+ *   static System * s_system;
+ *   static ComponentType type();
+ *   static System * system();
  *
  */
 namespace GameEngine
@@ -29,6 +30,8 @@ namespace GameEngine
 		 * Fields *		
 		\**********/
 	private:
+		static System * s_system; //is initialized by the system
+
 		ComponentID m_id;
 		Entity * m_ent;
 		bool m_active;
@@ -44,15 +47,22 @@ namespace GameEngine
 		virtual void init(Entity * ent);
 		void update(float dt);
 		virtual void destory();
+		
 
 		ComponentID getID() const { return m_id; }
-		virtual ComponentType getType() const = 0;
+
+		Entity * getEntity() { return m_ent; }
+		Entity const* getEntity() const { return m_ent; }
 
 		bool getActive() const { return m_active; }
 		void setActive(bool active) { m_active = active; }
 
-		Entity * getEntity() { return m_ent; }
-		Entity const* getEntity() const { return m_ent; }
+
+		static ComponentType type() { return ComponentType::COMPONENT_BASE; }
+		static System * system();
+
+		virtual ComponentType getType() const = 0;
+		virtual System * getSystem() const = 0;
 
 	protected:
 		virtual void updateComponent(float dt) = 0;

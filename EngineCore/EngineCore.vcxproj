@@ -79,6 +79,7 @@
     <ClInclude Include="..\inc\componentManager.h" />
     <ClInclude Include="..\inc\comp_transform.h" />
     <ClInclude Include="..\inc\entity.h" />
+    <ClInclude Include="..\inc\entityManager.h" />
     <ClInclude Include="..\inc\gameEngine.h" />
     <ClInclude Include="..\inc\message.h" />
     <ClInclude Include="..\inc\system.h" />
