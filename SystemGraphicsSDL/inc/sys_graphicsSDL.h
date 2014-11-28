@@ -1,5 +1,5 @@
-#ifndef _SYSGRAPHICS_H
-#define _SYSGRAPHICS_H
+#ifndef _SYS_GRAPHICS_H
+#define _SYS_GRAPHICS_H
 
 #include "system.h"
 

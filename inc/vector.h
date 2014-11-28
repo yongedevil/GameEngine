@@ -1,332 +1,163 @@
 #ifndef _VECTOR_H
 #define _VECTOR_H
 
-#include <cmath>
+#include "vectorGeneric.h"
 
 namespace GameEngine
 {
-	template<class T>
-	class Vector2
+	class Vector2f : private Vector2<float>
 	{
 	private:
-		T m_vals[2];
 
 	public:
-		Vector2(T x, T y) { m_vals[0] = x; m_vals[1] = y; }
-		Vector2() : Vector2<T>(0, 0) { }
-		Vector2(Vector2<T> const& vec2) : Vector2<T>(vec2.x(), vec2.y()) { }
-		~Vector2() { }
+		Vector2f(float x, float y) : Vector2<float>(x, y) { }
+		Vector2f() : Vector2<float>() { }
+		Vector2f(Vector2f const& vec2) : Vector2<float>(vec2.x(), vec2.y()) { }
+		Vector2f(Vector2<float> const& vec2) : Vector2<float>(vec2) { }
 
+		~Vector2f() { }
 
 		/***********************\
 		* Getters and Setters *
 		\***********************/
-		T x() const { return m_vals[0]; }
-		T y() const { return m_vals[1]; }
-		T x(T x) { return m_vals[0] = x; }
-		T y(T y) { return m_vals[1] = y; }
-
+		float x() const { return Vector2<float>::x(); }
+		float y() const { return Vector2<float>::y(); }
+		float x(float x) { return Vector2<float>::x(x); }
+		float y(float y) { return Vector2<float>::y(y); }
 
 		/*************\
 		* Operations *
 		\*************/
-		T Magnitude() const;
-		T MagnitudeSqr() const;
+		float magnitude() const { return Vector2<float>::magnitude(); }
+		float magnitudeSqr() const { return Vector2<float>::magnitudeSqr(); }
 
-		static Vector2<T> Zero();
-		static T Dot(Vector2<T> const& vec1, Vector2<T> const& vec2);
+		float dot(Vector2f const& vec2) const { return Vector2f::dot(*this, vec2); }
+
+		static Vector2f zero() { return Vector2<float>::zero(); }
+		static float dot(Vector2f const& vec1, Vector2f const& vec2) { return Vector2<float>::dot(vec1, vec2); }
 
 		/********************************\
 		* Assignment Operator overloads *
 		\********************************/
 		//Assignment
-		Vector2<T> & operator=(Vector2<T> const& vec2);
+		Vector2f & operator=(Vector2f const& vec2) { return Vector2f(Vector2<float>::operator=(vec2)); }
 
 		//Addition, Subtraction Assignment
-		Vector2<T> & operator+=(Vector2<T> const& vec2);
-		Vector2<T> & operator-=(Vector2<T> const& vec2);
+		Vector2f & operator+=(Vector2f const& vec2) { return Vector2f(Vector2<float>::operator+=(vec2)); }
+		Vector2f & operator-=(Vector2f const& vec2) { return Vector2f(Vector2<float>::operator-=(vec2)); }
 
 		//Multiplication, Division Assignment
-		Vector2<T> & operator*=(T scaler);
-		Vector2<T> & operator/=(T scaler);
+		Vector2f & operator*=(float scaler) { return Vector2f(Vector2<float>::operator*=(scaler)); }
+		Vector2f & operator/=(float scaler) { return Vector2f(Vector2<float>::operator/=(scaler)); }
 	};
 
-	template<class T>
-	class Vector3
+	class Vector3f : private Vector3<float>
 	{
 	private:
-		T m_vals[3];
 
 	public:
-		Vector3(T x, T y, T z) { m_vals[0] = x; m_vals[1] = y; m_vals[2] = z; }
-		Vector3() : Vector3<T>(0, 0, 0) { }
-		Vector3(Vector3<T> const& vec2) : Vector3<T>(vec2.x(), vec2.y(), vec2.z()) { }
-		~Vector3() { }
+		Vector3f(float x, float y, float z) : Vector3<float>(x, y, z) { }
+		Vector3f() : Vector3<float>() { }
+		Vector3f(Vector3f const& vec2) : Vector3<float>(vec2.x(), vec2.y(), vec2.z()) { }
+		Vector3f(Vector3<float> const& vec2) : Vector3<float>(vec2) { }
 
+		~Vector3f() { }
 
 		/***********************\
-		 * Getters and Setters *
+		* Getters and Setters *
 		\***********************/
-		T x() const { return m_vals[0]; }
-		T y() const { return m_vals[1]; }
-		T z() const { return m_vals[2]; }
-		T x(T x) { return m_vals[0] = x; }
-		T y(T y) { return m_vals[1] = y; }
-		T z(T z) { return m_vals[2] = z; }
-
+		float x() const { return Vector3<float>::x(); }
+		float y() const { return Vector3<float>::y(); }
+		float z() const { return Vector3<float>::z(); }
+		float x(float x) { return Vector3<float>::x(x); }
+		float y(float y) { return Vector3<float>::y(y); }
+		float z(float z) { return Vector3<float>::z(z); }
 
 		/*************\
 		* Operations *
 		\*************/
-		T Magnitude() const;
-		T MagnitudeSqr() const;
+		float magnitude() const { return Vector3<float>::magnitude(); }
+		float magnitudeSqr() const { return Vector3<float>::magnitudeSqr(); }
 
-		static Vector3<T> Zero();
-		static T Dot(Vector3<T> const& vec1, Vector3<T> const& vec2);
-		static Vector3<T> Cross(Vector3<T> const& vec1, Vector3<T> const& vec2);
-	
+		float dot(Vector3f const& vec2) const { return Vector3f::dot(*this, vec2); }
+		Vector3f cross(Vector3f const& vec2) const { return Vector3f::cross(*this, vec2); }
+
+		static Vector3f zero() { return Vector3<float>::zero(); }
+		static float dot(Vector3f const& vec1, Vector3f const& vec2) { return Vector3<float>::dot(vec1, vec2); }
+		static Vector3f cross(Vector3f const& vec1, Vector3f const& vec2) { return Vector3f(Vector3<float>::cross(vec1, vec2)); }
 
 		/********************************\
 		* Assignment Operator overloads *
 		\********************************/
 		//Assignment
-		Vector3<T> & operator=(Vector3<T> const& vec2);
+		Vector3f & operator=(Vector2f const& vec2) { return Vector3f(Vector3<float>::operator=(vec2)); }
 
 		//Addition, Subtraction Assignment
-		Vector3<T> & operator+=(Vector3<T> const& vec2);
-		Vector3<T> & operator-=(Vector3<T> const& vec2);
+		Vector3f & operator+=(Vector2f const& vec2) { return Vector3f(Vector3<float>::operator+=(vec2)); }
+		Vector3f & operator-=(Vector2f const& vec2) { return Vector3f(Vector3<float>::operator-=(vec2)); }
 
 		//Multiplication, Division Assignment
-		Vector3<T> & operator*=(T scaler);
-		Vector3<T> & operator/=(T scaler);
-
+		Vector3f & operator*=(float scaler) { return Vector3f(Vector3<float>::operator*=(scaler)); }
+		Vector3f & operator/=(float scaler) { return Vector3f(Vector3<float>::operator/=(scaler)); }
 	};
 
-
-
-
-	/*********************\
-	* Operations Vector2 *
-	\*********************/
-	template<class T>
-	T Vector2<T>::Magnitude() const { return std::sqrt(x() * x() + y() * y()); }
-	template<class T>
-	T Vector2<T>::MagnitudeSqr() const { return x() * x() + y() * y(); }
-
-	template<class T>
-	Vector2<T> Vector2<T>::Zero()
-	{
-		return Vector2<T>(0, 0);
-	}
-
-	template<class T>
-	T Vector2<T>::Dot(Vector2<T> const& vec1, Vector2<T> const& vec2)
-	{
-		return vec1.x() * vec2.x() + vec1.y() * vec2.y();
-	}
 
 	/*****************************\
 	* Operator overloads Vector2 *
 	\*****************************/
-	//Assignment
-	template<class T>
-	Vector2<T> & Vector2<T>::operator=(Vector2<T> const& vec2)
-	{
-		x(vec2.x());
-		y(vec2.y());
-		return *this;
-	}
-
-	//Addition, Subtraction Assignment
-	template<class T>
-	Vector2<T> & Vector2<T>::operator+=(Vector2<T> const& vec2)
-	{
-		x(x() + vec2.x());
-		y(y() + vec2.y());
-		return *this;
-	}
-	template<class T>
-	Vector2<T> & Vector2<T>::operator-=(Vector2<T> const& vec2)
-	{
-		x(x() - vec2.x());
-		y(y() - vec2.y());
-		return *this;
-	}
-
-	//Multiplication, Division Assignment
-	template<class T>
-	Vector2<T> & Vector2<T>::operator*=(T scaler)
-	{
-		x(x() * scaler);
-		y(y() * scaler);
-		return *this;
-	}
-	template<class T>
-	Vector2<T> & Vector2<T>::operator/=(T scaler)
-	{
-		x(x() / scaler);
-		y(y() / scaler);
-		return *this;
-	}
-
-	//Equals, Not Equals
-	template<class T>
-	bool operator==(Vector2<T> const& vec1, Vector2<T> const& vec2)
-	{
-		return vec1.x() == vec2.x() && vec1.y() == vec2.y();
-	}
-	template<class T>
-	bool operator!=(Vector2<T> const& vec1, Vector2<T> const& vec2)
-	{
-		return !(vec1 == vec2);
-	}
-
 	//Addition, Subtraction
-	template<class T>
-	Vector2<T> operator+(Vector2<T> const& vec1, Vector2<T> const& vec2)
+	Vector2f operator+(Vector2f const& vec1, Vector2f const& vec2)
 	{
-		return Vector2<T>(vec1.x() + vec2.x(), vec1.y() + vec2.y());
+		return vec1 + vec2;
 	}
-	template<class T>
-	Vector2<T> operator-(Vector2<T> const& vec1, Vector2<T> const& vec2)
+	Vector2f operator-(Vector2f const& vec1, Vector2f const& vec2)
 	{
-		return Vector2<T>(vec1.x() - vec2.x(), vec1.y() - vec2.y());
+		return vec1 - vec2;
 	}
 
 	//Multiplication, Division
-	template<class T>
-	Vector2<T> operator*(Vector2<T> const& vec1, T scaler)
+	Vector2f operator*(Vector2f const& vec1, float scaler)
 	{
-		return Vector2<T>(vec1.x() * scaler, vec1.y() * scaler);
+		return vec1 * scaler;
 	}
-	template<class T>
-	Vector2<T> operator*(T scaler, Vector2<T> const& vec2)
+	Vector2f operator*(float scaler, Vector2f const& vec2)
 	{
 		return vec2 * scaler;
 	}
-	template<class T>
-	Vector2<T> operator/(Vector2<T> const& vec1, T scaler)
+	Vector2f operator/(Vector2f const& vec1, float scaler)
 	{
-		return Vector2<T>(vec1.x() / scaler, vec1.y() / scaler);
-	}
-
-
-	/*********************\
-	* Operations Vector3 *
-	\*********************/
-	template<class T>
-	T Vector3<T>::Magnitude() const { return std::sqrt(x() * x() + y() * y() + z() * z()); }
-	template<class T>
-	T Vector3<T>::MagnitudeSqr() const { return x() * x() + y() * y() + z() * z(); }
-
-	template<class T>
-	Vector3<T> Vector3<T>::Zero()
-	{
-		return Vector3<T>(0, 0, 0);
-	}
-
-	template<class T>
-	T Vector3<T>::Dot(Vector3<T> const& vec1, Vector3<T> const& vec2)
-	{
-		return vec1.x() * vec2.x() + vec1.y() * vec2.y() + vec1.z() * vec2.z();
-	}
-
-	template<class T>
-	Vector3<T> Vector3<T>::Cross(Vector3<T> const& vec1, Vector3<T> const& vec2)
-	{
-		return Vector3<T>( vec1.y()*vec2.z() - vec1.z()*vec2.y(), vec1.z()*vec2.x() - vec1.x()*vec2.z(), vec1.x()*vec2.y() - vec1.y()*vec2.x() );
+		return vec1 / scaler;
 	}
 
 
 	/*****************************\
 	* Operator overloads Vector3 *
 	\*****************************/
-	//Assignment
-	template<class T>
-	Vector3<T> & Vector3<T>::operator=(Vector3<T> const& vec2)
-	{
-		x(vec2.x());
-		y(vec2.y());
-		z(vec2.z());
-		return *this;
-	}
-
-	//Addition, Subtraction Assignment
-	template<class T>
-	Vector3<T> & Vector3<T>::operator+=(Vector3<T> const& vec2)
-	{
-		x(x() + vec2.x());
-		y(y() + vec2.y());
-		z(z() + vec2.z());
-		return *this;
-	}
-	template<class T>
-	Vector3<T> & Vector3<T>::operator-=(Vector3<T> const& vec2)
-	{
-		x(x() - vec2.x());
-		y(y() - vec2.y());
-		z(z() - vec2.z());
-		return *this;
-	}
-
-	//Multiplication, Division Assignment
-	template<class T>
-	Vector3<T> & Vector3<T>::operator*=(T scaler)
-	{
-		x(x() * scaler);
-		y(y() * scaler);
-		z(z() * scaler);
-		return *this;
-	}
-	template<class T>
-	Vector3<T> & Vector3<T>::operator/=(T scaler)
-	{
-		x(x() / scaler);
-		y(y() / scaler);
-		z(z() / scaler);
-		return *this;
-	}
-
-	//Equals, Not Equals
-	template<class T>
-	bool operator==(Vector3<T> const& vec1, Vector3<T> const& vec2)
-	{
-		return vec1.x() == vec2.x() && vec1.y() == vec2.y() && vec1.z() == vec2.z();
-	}
-	template<class T>
-	bool operator!=(Vector3<T> const& vec1, Vector3<T> const& vec2)
-	{
-		return !(vec1 == vec2);
-	}
-
 	//Addition, Subtraction
-	template<class T>
-	Vector3<T> operator+(Vector3<T> const& vec1, Vector3<T> const& vec2)
+	Vector3f operator+(Vector3f const& vec1, Vector3f const& vec2)
 	{
-		return Vector3<T>(vec1.x() + vec2.x(), vec1.y() + vec2.y(), vec1.z() + vec2.z());
+		return vec1 + vec2;
 	}
-	template<class T>
-	Vector3<T> operator-(Vector3<T> const& vec1, Vector3<T> const& vec2)
+	Vector3f operator-(Vector3f const& vec1, Vector3f const& vec2)
 	{
-		return Vector3<T>(vec1.x() - vec2.x(), vec1.y() - vec2.y(), vec1.z() - vec2.z());
+		return vec1 - vec2;
 	}
 
 	//Multiplication, Division
-	template<class T>
-	Vector3<T> operator*(Vector3<T> const& vec1, T scaler)
+	Vector3f operator*(Vector3f const& vec1, float scaler)
 	{
-		return Vector3<T>(vec1.x() * scaler, vec1.y() * scaler, vec1.z() * scaler);
+		return vec1 * scaler;
 	}
-	template<class T>
-	Vector3<T> operator*(T scaler, Vector3<T> const& vec2)
+	Vector3f operator*(float scaler, Vector3f const& vec2)
 	{
 		return vec2 * scaler;
 	}
-	template<class T>
-	Vector3<T> operator/(Vector3<T> const& vec1, T scaler)
+	Vector3f operator/(Vector3f const& vec1, float scaler)
 	{
-		return Vector3<T>(vec1.x() / scaler, vec1.y() / scaler, vec1.z() / scaler);
+		return vec1 / scaler;
 	}
+
+
 }
 
 #endif

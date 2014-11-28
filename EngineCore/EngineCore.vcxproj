@@ -77,13 +77,16 @@
   <ItemGroup>
     <ClInclude Include="..\inc\component.h" />
     <ClInclude Include="..\inc\componentManager.h" />
+    <ClInclude Include="..\inc\comp_transform.h" />
     <ClInclude Include="..\inc\entity.h" />
     <ClInclude Include="..\inc\gameEngine.h" />
     <ClInclude Include="..\inc\message.h" />
     <ClInclude Include="..\inc\system.h" />
     <ClInclude Include="..\inc\systemManager.h" />
+    <ClInclude Include="..\inc\sys_core.h" />
     <ClInclude Include="..\inc\typedeff.h" />
     <ClInclude Include="..\inc\vector.h" />
+    <ClInclude Include="..\inc\vectorGeneric.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,5 @@
-#ifndef _SYSINPUT_H
-#define _SYSINPUT_H
+#ifndef _SYS_INPUT_H
+#define _SYS_INPUT_H
 
 #include "system.h"
 

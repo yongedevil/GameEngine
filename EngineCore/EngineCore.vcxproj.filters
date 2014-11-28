@@ -50,10 +50,19 @@
     <ClInclude Include="..\inc\systemManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\vector.h">
+    <ClInclude Include="..\inc\componentManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\componentManager.h">
+    <ClInclude Include="..\inc\sys_core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\comp_transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\vectorGeneric.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
