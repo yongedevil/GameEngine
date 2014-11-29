@@ -13,11 +13,6 @@ namespace GameEngine
 	class iComponentManager
 	{
 	public:
-<<<<<<< HEAD
-=======
-		iComponentManager() { }
-
->>>>>>> origin/master
 		virtual ComponentType getType() = 0;
 
 		virtual ComponentReference * createComponent() = 0;
