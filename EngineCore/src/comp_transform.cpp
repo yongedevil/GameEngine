@@ -21,10 +21,10 @@ void Transform::init(Entity *ent)
 
 void Transform::update(float dt)
 {
-
+	Component::update(dt);
 }
 
 void Transform::destroy()
 {
-
+	Component::destory();
 }

@@ -21,15 +21,17 @@ namespace GameEngine
 
 		void init();
 
-		EntityType getEntityType() { return T::type(); }
-
 		typename EntityList::iterator begin();
 		typename EntityList::iterator end();
 		typename EntityList::const_iterator cbegin() const;
 		typename EntityList::const_iterator cend() const;
 
 		template<class T>
-		T * addEntity();
+		T * createEntity();
+
+		void removeEntity(Entity * entity);
+
+		Entity * getEntity(EntityID id);
 	};
 
 	EntityManager::EntityManager()
@@ -50,28 +52,28 @@ namespace GameEngine
 	{
 	}
 
-	typename EntityList::iterator EntityManager::begin()
+	typename EntityManager::EntityList::iterator EntityManager::begin()
 	{
 		return m_entityList.begin();
 	}
 
-	typename EntityList::iterator EntityManager::end()
+	typename EntityManager::EntityList::iterator EntityManager::end()
 	{
 		return m_entityList.end();
 	}
 
-	typename EntityList::const_iterator EntityManager::cbegin() const
+	typename EntityManager::EntityList::const_iterator EntityManager::cbegin() const
 	{
 		return m_entityList.cbegin();
 	}
 
-	typename EntityList::const_iterator EntityManager::cend() const
+	typename EntityManager::EntityList::const_iterator EntityManager::cend() const
 	{
 		return m_entityList.cend();
 	}
 	
 	template<class T>
-	T * EntityManager::addEntity()
+	T * EntityManager::createEntity()
 	{
 		T * entity = new T();
 		m_entityList.add(entity);

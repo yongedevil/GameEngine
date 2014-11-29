@@ -14,8 +14,9 @@ namespace GameEngine
 		* Fields *
 		\**********/
 	private:
+		typedef std::vector<iComponentManager*> ManagerList;
 		//componentManagers for associated components go here
-		std::vector<iComponentManager*> m_cManagers;
+		ManagerList m_managerList;
 
 		/************\
 		* Functions *
@@ -25,8 +26,8 @@ namespace GameEngine
 		System();
 		virtual ~System();
 
-		virtual void init() = 0;
-		virtual void updateSystem(float dt) = 0;
+		virtual void startup() = 0;
+		virtual void update(float dt) = 0;
 		virtual void shutdown() = 0;
 
 		template<class T>

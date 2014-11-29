@@ -8,10 +8,12 @@ m_id((ComponentID)std::clock()),
 m_ent(NULL),
 m_active(false)
 {
+	m_reference = new ComponentReference();
 }
 
 Component::~Component()
 {
+	delete m_reference;
 }
 
 void Component::init(Entity * ent)
@@ -20,10 +22,9 @@ void Component::init(Entity * ent)
 	m_active = true;
 }
 
-void Component::updateComponent(float dt)
+void Component::update(float dt)
 {
-	if (m_active)
-		update(dt);
+
 }
 
 void Component::destory()

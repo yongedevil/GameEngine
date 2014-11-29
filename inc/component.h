@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "typedeff.h"
+#include "componentReference.h"
 
 /* Component class
  * This class repesents a component that adds functionality to an Entity
@@ -21,7 +22,6 @@ namespace GameEngine
 {
 	class Entity;
 	class System;
-
 
 	/********************************************\
 	 * Component class                          *
@@ -39,6 +39,7 @@ namespace GameEngine
 		ComponentID m_id;
 		Entity * m_ent;
 		bool m_active;
+		ComponentReference * m_reference;
 
 
 		/************\
@@ -51,7 +52,7 @@ namespace GameEngine
 
 		//init, update, destroy
 		virtual void init(Entity * ent);
-		void updateComponent(float dt);
+		virtual void update(float dt);
 		virtual void destory();
 
 
@@ -64,6 +65,8 @@ namespace GameEngine
 		bool getActive() const { return m_active; }
 		void setActive(bool active) { m_active = active; }
 
+		ComponentReference * getReference() const { return m_reference; }
+
 
 		//type and system (these need to be implemented by derived classes)
 		//static ComponentType type() { return ComponentType::COMPONENT_BASE; }
@@ -72,9 +75,6 @@ namespace GameEngine
 
 		virtual ComponentType getType() const = 0;
 		virtual System * getSystem() const = 0;
-
-	protected:
-		virtual void update(float dt) = 0;
 	};
 
 	/*

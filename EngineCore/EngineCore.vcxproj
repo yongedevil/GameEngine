@@ -71,6 +71,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\component.cpp" />
+    <ClCompile Include="src\componentReference.cpp" />
     <ClCompile Include="src\comp_transform.cpp" />
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\system.cpp" />
@@ -78,6 +79,7 @@
   <ItemGroup>
     <ClInclude Include="..\inc\component.h" />
     <ClInclude Include="..\inc\componentManager.h" />
+    <ClInclude Include="..\inc\componentReference.h" />
     <ClInclude Include="..\inc\comp_transform.h" />
     <ClInclude Include="..\inc\entity.h" />
     <ClInclude Include="..\inc\entityManager.h" />

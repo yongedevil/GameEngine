@@ -8,11 +8,12 @@
 namespace GameEngine
 {
 	class Component;
+	class ComponentReference;
 	
 	class Entity
 	{
 	private:
-		typedef std::vector<Component*> ComponentList;
+		typedef std::vector<ComponentReference*> ComponentList;
 
 		/**********\
 		* Fields *
@@ -33,7 +34,7 @@ namespace GameEngine
 
 
 		virtual void init();
-		void updateEntity(float dt);
+		virtual void update(float dt);
 		virtual void destroy();
 
 		//type
@@ -52,11 +53,7 @@ namespace GameEngine
 
 		template<class T>
 		T * addComponent();
-		void removeComponent(Component * comp);
-
-
-	protected:
-		virtual void update(float dt);
+		void removeComponent(Component * component);
 	};
 
 	/*
@@ -89,8 +86,8 @@ namespace GameEngine
 	template<class T>
 	T * Entity::addComponent()
 	{
-		T * comp = T::system()->createComponent<T>();
-		m_componentList->push_back(comp);
+		ComponentReference reference = T::system()->createComponent<T>();
+		m_componentList->push_back(reference);
 
 		return comp;
 	}
