@@ -21,7 +21,6 @@ namespace GameEngine
 
 		//init, update, destroy
 		void init(Entity * ent);
-		void update(float dt);
 		void destroy();
 
 
@@ -45,6 +44,9 @@ namespace GameEngine
 
 		virtual ComponentType getType() { return type(); }
 		virtual System * getSystem() { return system(); }
+
+	protected:
+		void update(float dt);
 	};
 }
 

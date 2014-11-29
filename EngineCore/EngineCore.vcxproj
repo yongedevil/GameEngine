@@ -74,6 +74,7 @@
     <ClCompile Include="src\comp_transform.cpp" />
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\system.cpp" />
+    <ClCompile Include="src\sys_core.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inc\component.h" />

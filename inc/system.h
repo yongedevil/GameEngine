@@ -13,7 +13,7 @@ namespace GameEngine
 		/**********\
 		* Fields *
 		\**********/
-	private:
+	protected:
 		//componentManagers for associated components go here
 		std::vector<iComponentManager*> m_cManagers;
 

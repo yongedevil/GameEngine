@@ -10,6 +10,9 @@ namespace GameEngine
 {
 	class iComponentManager
 	{
+	public:
+		iComponentManager() { }
+
 		virtual ComponentType getType() = 0;
 
 		virtual Component * addComponent() = 0;
@@ -17,7 +20,7 @@ namespace GameEngine
 	};
 
 	template<class T>
-	class ComponentManager : iComponentManager
+	class ComponentManager : public iComponentManager
 	{
 	public:
 		typedef std::vector<T> ComponentList;
@@ -83,10 +86,9 @@ namespace GameEngine
 	template<class T>
 	Component * ComponentManager<T>::addComponent()
 	{
-		T * comp = new T();
-		m_componentList.push_back(comp);
-
-		return comp;
+		m_componentList.push_back(T());
+		
+		return &m_componentList.back();
 	}
 
 	template<class T>
