@@ -13,8 +13,12 @@ namespace GameEngine
 		/**********\
 		* Fields *
 		\**********/
+<<<<<<< HEAD
 	private:
 		typedef std::vector<iComponentManager*> ManagerList;
+=======
+	protected:
+>>>>>>> origin/master
 		//componentManagers for associated components go here
 		ManagerList m_managerList;
 

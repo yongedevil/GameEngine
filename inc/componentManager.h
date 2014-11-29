@@ -13,6 +13,11 @@ namespace GameEngine
 	class iComponentManager
 	{
 	public:
+<<<<<<< HEAD
+=======
+		iComponentManager() { }
+
+>>>>>>> origin/master
 		virtual ComponentType getType() = 0;
 
 		virtual ComponentReference * createComponent() = 0;
@@ -22,7 +27,7 @@ namespace GameEngine
 	};
 
 	template<class T>
-	class ComponentManager : iComponentManager
+	class ComponentManager : public iComponentManager
 	{
 	public:
 		typedef std::vector<T> ComponentList;
@@ -250,6 +255,7 @@ namespace GameEngine
 	template<class T>
 	ComponentReference * ComponentManager<T>::createComponent()
 	{
+<<<<<<< HEAD
 		T * comp = new T();
 		ComponentReference * reference = comp->getReference();
 
@@ -258,6 +264,11 @@ namespace GameEngine
 		reference->m_index = m_componentList.size - 1;
 
 		return reference;
+=======
+		m_componentList.push_back(T());
+		
+		return &m_componentList.back();
+>>>>>>> origin/master
 	}
 
 	template<class T>
