@@ -75,10 +75,12 @@
     <ClCompile Include="src\comp_transform.cpp" />
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\system.cpp" />
+    <ClCompile Include="src\sys_core.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inc\component.h" />
     <ClInclude Include="..\inc\componentManager.h" />
+    <ClInclude Include="..\inc\componentManagerInterface.h" />
     <ClInclude Include="..\inc\componentReference.h" />
     <ClInclude Include="..\inc\comp_transform.h" />
     <ClInclude Include="..\inc\entity.h" />

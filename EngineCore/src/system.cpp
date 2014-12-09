@@ -2,9 +2,8 @@
 
 using namespace GameEngine;
 
-System::System()
+System::System() : m_managerList(), m_active(false)
 {
-	m_managerList = ManagerList();
 }
 
 System::~System()

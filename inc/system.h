@@ -2,7 +2,6 @@
 #define _SYSTEM_H
 
 #include <vector>
-
 #include "component.h"
 #include "componentManager.h"
 
@@ -13,14 +12,11 @@ namespace GameEngine
 		/**********\
 		* Fields *
 		\**********/
-<<<<<<< HEAD
-	private:
-		typedef std::vector<iComponentManager*> ManagerList;
-=======
 	protected:
->>>>>>> origin/master
+		typedef std::vector<iComponentManager*> ManagerList;
 		//componentManagers for associated components go here
 		ManagerList m_managerList;
+		bool m_active;
 
 		/************\
 		* Functions *

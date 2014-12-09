@@ -53,7 +53,7 @@ namespace GameEngine
 		//init, update, destroy
 		virtual void init(Entity * ent);
 		virtual void update(float dt);
-		virtual void destory();
+		virtual void destroy();
 
 
 		//getters and setters

@@ -29,7 +29,7 @@ void Entity::destroy()
 	for (ComponentList::iterator it = m_componentList->begin(); it != m_componentList->end(); it++)
 	{
 		//detach components here
-		(*it)->getComponent()->destory();
+		(*it)->getComponent()->destroy();
 	}
 	m_componentList->clear();
 }

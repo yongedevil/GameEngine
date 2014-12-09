@@ -1,5 +1,5 @@
-#ifndef _SYSTEMMANAGER_H
-#define _SYSTEMMANAGER_H
+#ifndef _SYSTEM_MANAGER_H
+#define _SYSTEM_MANAGER_H
 
 #include <vector>
 

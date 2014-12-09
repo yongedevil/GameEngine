@@ -26,5 +26,5 @@ void Transform::update(float dt)
 
 void Transform::destroy()
 {
-	Component::destory();
+	Component::destroy();
 }

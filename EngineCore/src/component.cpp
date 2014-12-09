@@ -27,7 +27,7 @@ void Component::update(float dt)
 
 }
 
-void Component::destory()
+void Component::destroy()
 {
 	if (m_ent)
 	{

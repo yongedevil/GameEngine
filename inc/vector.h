@@ -1,5 +1,5 @@
-#ifndef _VECTORGENERIC_H
-#define _VECTORGENERIC_H
+#ifndef _VECTOR_H
+#define _VECTOR_H
 
 #include <cmath>
 

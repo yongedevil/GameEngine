@@ -1,18 +1,25 @@
 #ifndef _SYS_CORE_H
 #define _SYS_CORE_H
 
-#include <vector>
 #include "system.h"
 #include "comp_transform.h"
 
 namespace GameEngine
 {
-	class Sys_Core : public System
+	class SysCore : public System
 	{
 	private:
 
 	public:
-		Sys_Core();
+		SysCore();
+		~SysCore();
+
+		void startup();
+		void update(float dt);
+		void shutdown();
+
+
+
 	};
 }
 

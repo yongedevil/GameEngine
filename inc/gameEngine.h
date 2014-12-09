@@ -1,5 +1,5 @@
-#ifndef _GAMEENGINE_H
-#define _GAMEENGINE_H
+#ifndef _GAME_ENGINE_H
+#define _GAME_ENGINE_H
 
 #include <vector>
 #include <cassert>

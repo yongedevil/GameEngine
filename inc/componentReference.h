@@ -1,5 +1,5 @@
-#ifndef _COMPONENTREFERENCE_H
-#define _COMPONENTREFERENCE_H
+#ifndef _COMPONENT_REFERENCE_H
+#define _COMPONENT_REFERENCE_H
 
 
 namespace GameEngine

@@ -1,5 +1,5 @@
-#ifndef _ENTITYMANAGER_H
-#define _ENTITYMANAGER_H
+#ifndef _ENTITY_MANAGER_H
+#define _ENTITY_MANAGER_H
 
 #include <vector>
 

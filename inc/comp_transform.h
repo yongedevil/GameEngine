@@ -42,8 +42,8 @@ namespace GameEngine
 		static System * setSystem(System * system) { s_system = system; }
 		static System * system() { return s_system; }
 
-		virtual ComponentType getType() { return type(); }
-		virtual System * getSystem() { return system(); }
+		ComponentType getType() const { return type(); }
+		System * getSystem() const { return system(); }
 
 	protected:
 		void update(float dt);
