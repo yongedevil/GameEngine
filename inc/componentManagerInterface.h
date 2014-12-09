@@ -100,7 +100,7 @@ namespace GameEngine
 
 		virtual ComponentType getType() = 0;
 
-		virtual ComponentReference * createComponent() = 0;
+		virtual Component * createComponent() = 0;
 		virtual void removeComponent(Component * component) = 0;
 
 		virtual Component * getComponent(int index) = 0;

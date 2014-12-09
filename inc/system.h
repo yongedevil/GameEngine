@@ -27,12 +27,28 @@ namespace GameEngine
 		virtual ~System();
 
 		virtual void startup() = 0;
-		virtual void update(float dt) = 0;
+		virtual void update(float dt);
 		virtual void shutdown() = 0;
 
 		template<class T>
 		T * createComponet();
 	};
+
+
+	template<class T>
+	T * System::createComponet()
+	{
+		Component * comp = NULL;
+		for (ManagerList::iterator itManager = m_managerList.begin(); NULL == comp && itManager != m_managerList.end(); ++itManager)
+		{
+			if (T::type() == (*itManager)->getType())
+			{
+				comp = (*itManager)->createComponent();
+			}
+		}
+
+		return comp;
+	}
 }
 
 #endif

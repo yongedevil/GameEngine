@@ -35,7 +35,7 @@ namespace GameEngine
 		//typename const_iterator cend() const;
 
 
-		ComponentReference * createComponent();
+		Component * createComponent();
 		void removeComponent(Component * component);
 
 		Component * getComponent(int index);
@@ -103,14 +103,14 @@ namespace GameEngine
 	}
 
 	template<class T>
-	ComponentReference * ComponentManager<T>::createComponent()
+	Component * ComponentManager<T>::createComponent()
 	{
 		m_componentList.push_back(T());
 
 		ComponentReference * reference = m_componentList.back().getReference();
 		iComponentManager::setReference(reference, m_componentList.size() - 1);
 				
-		return reference;
+		return reference->getComponent();
 	}
 
 	template<class T>

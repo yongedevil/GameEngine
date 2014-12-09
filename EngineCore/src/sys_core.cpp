@@ -22,16 +22,6 @@ void SysCore::startup()
 
 void SysCore::update(float dt)
 {
-	if (m_active)
-	{
-		for (ManagerList::iterator itManager = m_managerList.begin(); itManager != m_managerList.end(); ++itManager)
-		{
-			for (iComponentManager::iterator itComponent = (*itManager)->begin(); itComponent != (*itManager)->end(); ++itComponent)
-			{
-				(*itComponent)->update(dt);
-			}
-		}
-	}
 }
 
 void SysCore::shutdown()
