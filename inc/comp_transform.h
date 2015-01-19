@@ -1,6 +1,7 @@
 #ifndef _COMP_TRANSFORM_H
 #define _COMP_TRANSFORM_H
 
+#include "componentManager.h"
 #include "component.h"
 #include "vector.h"
 #include "quaternion.h"
@@ -9,8 +10,12 @@ namespace GameEngine
 {
 	class Transform : public Component
 	{
+		friend class SysCore;
+
 	private:
 		static System * s_system; //is initialized by the system
+		static ComponentManager<Transform> * s_transformList;
+
 		Vector3f m_pos;
 		Quaternionf m_rot;
 
@@ -39,11 +44,10 @@ namespace GameEngine
 
 		//type and system
 		static ComponentType type() { return ComponentType::COMPONENT_TRANSFORM; }
-		static System * setSystem(System * system) { s_system = system; }
 		static System * system() { return s_system; }
 
 		ComponentType getType() const { return type(); }
-		System * getSystem() const { return system(); }
+		//System * getSystem() const { return system(); }
 
 	protected:
 		void update(float dt);

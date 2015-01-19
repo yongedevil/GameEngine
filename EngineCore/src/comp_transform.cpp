@@ -4,6 +4,8 @@ using namespace GameEngine;
 
 System * Transform::s_system = NULL;
 
+ComponentManager<Transform> * Transform::s_transformList = new ComponentManager<Transform>();
+
 Transform::Transform()
 {
 	m_pos = Vector3f();

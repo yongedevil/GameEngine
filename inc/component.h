@@ -37,7 +37,7 @@ namespace GameEngine
 		//static System * s_system; //is initialized by the system
 
 		ComponentID m_id;
-		Entity * m_ent;
+		EntityID m_entid;
 		bool m_active;
 		ComponentReference * m_reference;
 
@@ -51,16 +51,14 @@ namespace GameEngine
 		virtual ~Component();
 
 		//init, update, destroy
-		virtual void init(Entity * ent);
+		virtual void init(EntityID entid);
 		virtual void update(float dt);
 		virtual void destroy();
 
 
 		//getters and setters
 		ComponentID getID() const { return m_id; }
-
-		Entity * getEntity() { return m_ent; }
-		Entity const* getEntity() const { return m_ent; }
+		EntityID getEntityID() const { return m_entid; }
 
 		bool getActive() const { return m_active; }
 		void setActive(bool active) { m_active = active; }
@@ -74,7 +72,7 @@ namespace GameEngine
 		//static System * system() { return s_system; }
 
 		virtual ComponentType getType() const = 0;
-		virtual System * getSystem() const = 0;
+		//virtual System * getSystem() const = 0;
 	};
 
 	/*

@@ -73,18 +73,16 @@
     <ClCompile Include="src\component.cpp" />
     <ClCompile Include="src\componentReference.cpp" />
     <ClCompile Include="src\comp_transform.cpp" />
-    <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\system.cpp" />
     <ClCompile Include="src\sys_core.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inc\component.h" />
+    <ClInclude Include="..\inc\componenthandle.h" />
     <ClInclude Include="..\inc\componentManager.h" />
     <ClInclude Include="..\inc\componentManagerInterface.h" />
     <ClInclude Include="..\inc\componentReference.h" />
     <ClInclude Include="..\inc\comp_transform.h" />
-    <ClInclude Include="..\inc\entity.h" />
-    <ClInclude Include="..\inc\entityManager.h" />
     <ClInclude Include="..\inc\gameEngine.h" />
     <ClInclude Include="..\inc\message.h" />
     <ClInclude Include="..\inc\quaternion.h" />
