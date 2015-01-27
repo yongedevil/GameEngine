@@ -1,33 +1,29 @@
 #include "component.h"
-#include "entity.h"
 
 using namespace GameEngine;
 
 Component::Component() :
 m_id((ComponentID)std::clock()),
-m_entid(0),
+m_owner(0),
 m_active(false)
 {
-	m_reference = new ComponentReference();
 }
 
 Component::~Component()
 {
-	delete m_reference;
 }
 
-void Component::init(EntityID entid)
+void Component::init(Entity * owner)
 {
-	m_entid = entid;
+	m_owner = owner;
 	m_active = true;
 }
 
-void Component::update(float dt)
+void Component::updateComponent(float dt)
 {
-
-}
-
-void Component::destroy()
-{
+	if(m_active)
+	{
+		update(dt);
+	}
 }
 

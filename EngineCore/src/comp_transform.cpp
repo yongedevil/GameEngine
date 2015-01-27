@@ -2,10 +2,6 @@
 
 using namespace GameEngine;
 
-System * Transform::s_system = NULL;
-
-ComponentManager<Transform> * Transform::s_transformList = new ComponentManager<Transform>();
-
 Transform::Transform()
 {
 	m_pos = Vector3f();
@@ -23,10 +19,19 @@ void Transform::init(Entity *ent)
 
 void Transform::update(float dt)
 {
-	Component::update(dt);
 }
 
 void Transform::destroy()
 {
 	Component::destroy();
+}
+
+void Transform::translate(Vector3f translation)
+{
+	m_pos += translation;
+}
+
+void Transform::rotate(Quaternionf rotation)
+{
+	m_rot *= rotation;
 }
