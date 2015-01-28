@@ -3,19 +3,20 @@
 
 #include <vector>
 
+#include "manager.h"
 #include "System.h"
 
 
 namespace GameEngine
 {
-	class SystemManager
+	class SystemManager : public Manager<System>
 	{
 	public:
-		typedef std::vector<System*> SystemList;
-		
-	private:
-		SystemList mlist_systems;
+		typedef ManagerList SystemList;
 
+	public:
+		SystemManager();
+		~SystemManager();
 
 	};
 }

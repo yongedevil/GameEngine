@@ -7,31 +7,30 @@ namespace GameEngine
 	class Manager
 	{
 	protected:
-		typedef std::vector<T *> ManagerList;
+		typedef std::vector<T*> ManagerList;
 
 	public:
 		Manager();
 		virtual ~Manager();
-
-		void init() = 0;
 
 		typename ManagerList::iterator begin() { return m_list.begin(); }
 		typename ManagerList::iterator end() { return m_list.end(); };
 		typename ManagerList::const_iterator cbegin() const { return m_list.cbegin; } ;
 		typename ManagerList::const_iterator cend() const { return m_list.cend; }
 
-		template<class T>
-		T * create();
+		template<class K>
+		K * create();
 
 		void remove(T * item);
 
 	private:
-		MangerList m_list;
+		ManagerList m_list;
 	};
 
 	template<class T>
-	Manager<T>::Manger() : m_list(NULL)
+	Manager<T>::Manager()
 	{
+		m_list = ManagerList();
 	}
 
 	template<class T>
@@ -44,15 +43,10 @@ namespace GameEngine
 	}
 
 	template<class T>
-	void Manager<T>::init()
+	template<class K>
+	K * Manager<T>::create()
 	{
-		m_list = new ManagerList();
-	}
-
-	template<class T>
-	T * Manager<T>::create()
-	{
-		T * item = new T();
+		K * item = new K();
 		m_list.push_back(item);
 
 		return item;

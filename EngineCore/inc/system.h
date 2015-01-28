@@ -23,8 +23,9 @@ namespace GameEngine
 		virtual ~System();
 
 		virtual void startup() = 0;
-		virtual void updateSystem(float dt);
 		virtual void shutdown() = 0;
+
+		virtual void updateSystem(float dt);
 
 	protected:
 		virtual void update(float dt) = 0;

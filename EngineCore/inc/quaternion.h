@@ -13,10 +13,10 @@ namespace GameEngine
 		T m_vals[4];
 
 	public:
-		Quaternion(T w, T x, T y, T z) { m_vals[0] = w; m_vals[1] = x; m_vals[2] = y; m_vals[3] = z; }
-		Quaternion() : Quaternion<T>(1, 0, 0, 0) { }
+		Quaternion(T w, T x, T y, T z)			{ m_vals[0] = w;			m_vals[1] = x;			m_vals[2] = y;			m_vals[3] = z; }
+		Quaternion()							{ m_vals[0] = 1;			m_vals[1] = 0;			m_vals[2] = 0;			m_vals[3] = 0; }
 		Quaternion(T angle, Vector3<T> axis);
-		Quaternion(Quaternion<T> const& quat2) : Quaternion<T>(quat2.w(), quat2.x(), quat2.y(), quat2.z()) { }
+		Quaternion(Quaternion<T> const& quat2)	{ m_vals[0] = quat2.w();	m_vals[1] = quat2.x();	m_vals[2] = quat2.y();	m_vals[3] = quat2.z(); }
 		~Quaternion() { }
 
 
@@ -166,7 +166,7 @@ namespace GameEngine
 			quat1.w()*quat2.w() - quat1.x()*quat2.x() - quat1.y()*quat2.y() - quat1.z()*quat2.z(),
 			quat1.w()*quat2.x() + quat1.x()*quat2.w() + quat1.y()*quat2.z() - quat1.z()*quat2.y(),
 			quat1.w()*quat2.y() - quat1.x()*quat2.z() + quat1.y()*quat2.w() + quat1.z()*quat2.x(),
-			quat1.w()*quat2.z() + quat1.x()*quat2.y() - quat1.y()*quat2.x() + quat1.z()*quat2.w())
+			quat1.w()*quat2.z() + quat1.x()*quat2.y() - quat1.y()*quat2.x() + quat1.z()*quat2.w());
 	}
 	template<class T>
 	Quaternion<T> operator*(Quaternion<T> const& quat1, T scaler)

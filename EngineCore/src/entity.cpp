@@ -27,6 +27,14 @@ void Entity::update(float dt)
 	}
 }
 
+void Entity::draw(class Sys_Graphics * graphics)
+{
+	for(ComponentList::iterator it = m_componentList->begin(); it != m_componentList->end(); ++it)
+	{
+		(*it)->drawComponent(graphics);
+	}
+}
+
 void Entity::destroy()
 {
 	for (ComponentList::iterator it = m_componentList->begin(); it != m_componentList->end(); it++)

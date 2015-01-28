@@ -66,9 +66,9 @@ namespace GameEngine
 		T m_vals[3];
 
 	public:
-		Vector3(T x, T y, T z) { m_vals[0] = x; m_vals[1] = y; m_vals[2] = z; }
-		Vector3() : Vector3<T>(0, 0, 0) { }
-		Vector3(Vector3<T> const& vec2) : Vector3<T>(vec2.x(), vec2.y(), vec2.z()) { }
+		Vector3(T x, T y, T z)			{ m_vals[0] = x;		m_vals[1] = y;			m_vals[2] = z; }
+		Vector3()						{ m_vals[0] = 0;		m_vals[1] = 0;			m_vals[2] = 0; }
+		Vector3(Vector3<T> const& vec2) { m_vals[0] = vec2.x(); m_vals[1] = vec2.y();	m_vals[2] = vec2.z(); }
 		~Vector3() { }
 
 

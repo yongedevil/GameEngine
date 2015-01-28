@@ -27,3 +27,15 @@ void Component::updateComponent(float dt)
 	}
 }
 
+void Component::drawComponent(class Sys_Graphics * graphics)
+{
+	if(m_active)
+	{
+		draw(graphics);
+	}
+}
+
+void Component::draw(class Sys_Graphics * graphics)
+{
+}
+
