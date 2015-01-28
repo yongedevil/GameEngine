@@ -2,7 +2,7 @@
 #define _SYS_INPUT_H
 
 #include <cstdlib>
-#include "GL\glut.h"
+#include <GL\glut.h>
 
 #include "system.h"
 
