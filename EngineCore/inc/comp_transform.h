@@ -45,6 +45,7 @@ namespace GameEngine
 
 	protected:
 		void update(float dt);
+		void draw();
 	};
 }
 

@@ -11,10 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="inc\button.h" />
     <ClInclude Include="inc\gameEngine.h" />
+    <ClInclude Include="inc\screen.h" />
+    <ClInclude Include="inc\sprite.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\button.cpp" />
     <ClCompile Include="src\gameEngine.cpp" />
+    <ClCompile Include="src\screen.cpp" />
+    <ClCompile Include="src\sprite.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D000A4E1-F2EA-463B-85CE-D49A5A8355F5}</ProjectGuid>
@@ -24,13 +30,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -45,11 +51,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(SolutionDir)Glut\inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(SolutionDir)Glut\inc;$(SolutionDir)Soil\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(SolutionDir)Glut\inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(SolutionDir)Glut\inc;$(SolutionDir)Soil\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

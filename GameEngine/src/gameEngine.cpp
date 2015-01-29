@@ -89,7 +89,7 @@ void GEngine::draw()
 		EntityManager::EntityList::iterator itEnt;
 		for(itEnt = m_entManager->begin(); itEnt != m_entManager->end(); ++itEnt)
 		{
-			(*itEnt)->draw(m_graphics);
+			(*itEnt)->draw();
 		}
 	}
 }

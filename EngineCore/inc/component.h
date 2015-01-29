@@ -49,10 +49,10 @@ namespace GameEngine
 
 		//init, update, destroy
 		virtual void init(Entity * owner);
-		void updateComponent(float dt);
-		void drawComponent(class Sys_Graphics * graphics);
 		virtual void destroy() = 0;
 
+		void updateComponent(float dt);
+		void drawComponent();
 
 		//getters and setters
 		ComponentID getID() const { return m_id; }
@@ -68,7 +68,7 @@ namespace GameEngine
 
 	protected:		
 		virtual void update(float dt) = 0;
-		virtual void draw(class Sys_Graphics * graphics);
+		virtual void draw();
 	};
 
 	/*

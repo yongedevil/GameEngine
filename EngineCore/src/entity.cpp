@@ -27,11 +27,11 @@ void Entity::update(float dt)
 	}
 }
 
-void Entity::draw(class Sys_Graphics * graphics)
+void Entity::draw()
 {
 	for(ComponentList::iterator it = m_componentList->begin(); it != m_componentList->end(); ++it)
 	{
-		(*it)->drawComponent(graphics);
+		(*it)->drawComponent();
 	}
 }
 

@@ -15,9 +15,15 @@
     <ClCompile Include="src\sys_graphicsGlut.cpp">
       <Filter>SourceFiles</Filter>
     </ClCompile>
+    <ClCompile Include="src\texture.cpp">
+      <Filter>SourceFiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\sys_graphicsGlut.h">
+      <Filter>HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\texture.h">
       <Filter>HeaderFiles</Filter>
     </ClInclude>
   </ItemGroup>

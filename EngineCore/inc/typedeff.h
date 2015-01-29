@@ -10,6 +10,8 @@ namespace GameEngine
 	{
 		COMPONENT_BASE,
 		COMPONENT_TRANSFORM,
+		COMPONENT_SPRITE,
+		COMPONENT_BUTTON,
 		//insert more types here
 		NUM_TYPES
 	};

@@ -18,13 +18,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -39,11 +39,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)inc;$(SolutionDir)Glut\inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)GameEngine\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)GameEngine\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(SolutionDir)Glut\inc;$(SolutionDir)Soil\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Debug;$(SolutionDir)Glut\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)inc;$(SolutionDir)Glut\inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)GameEngine\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)GameEngine\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(SolutionDir)Glut\inc;$(SolutionDir)Soil\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Release;$(SolutionDir)Glut\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

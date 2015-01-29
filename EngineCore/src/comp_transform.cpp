@@ -21,6 +21,10 @@ void Transform::update(float dt)
 {
 }
 
+void Transform::draw()
+{
+}
+
 void Transform::destroy()
 {
 	Component::destroy();
