@@ -1,16 +1,17 @@
 #ifndef _BOARD_H
 #define _BOARD_H
 
-#include "vector.h"
-#include "quaternion.h"
+#include "entity.h"
 
 namespace GAME3011_Assignment1
 {
+	class Tile;
+
 	/********************************************************\
 	 * Board class											*
 	 * Represents the game board as a 2D grid of int values	*
 	\********************************************************/
-	class Board
+	class Board : public Entity
 	{
 		/****************\
 		 * enum			*
@@ -32,12 +33,9 @@ namespace GAME3011_Assignment1
 		 * Fields		*
 		\****************/
 	private:
-		int * m_board;
+		Tile * m_board;
 		int m_width;
 		int m_height;
-
-		GameEngine::Vector3f m_pos;
-		GameEngine::Quaternionf m_rot;
 		
 
 		/****************\

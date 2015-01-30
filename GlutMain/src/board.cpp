@@ -1,4 +1,5 @@
 #include "board.h"
+#include "tile.h"
 
 using namespace GAME3011_Assignment1;
 
@@ -11,7 +12,7 @@ using namespace GAME3011_Assignment1;
  *   width: width of the board.													*
  *   height: height of the board.												*
 \********************************************************************************/
-Board::Board(int width, int height) : m_width(width), m_height(height), m_pos(), m_rot()
+Board::Board(int width, int height) : m_width(width), m_height(height)
 {
 	if(m_width <= 0)
 		m_width = 16;
@@ -19,7 +20,7 @@ Board::Board(int width, int height) : m_width(width), m_height(height), m_pos(),
 	if(m_height <= 0)
 		m_height = 16;
 
-	m_board = new int[m_width * m_height];
+	m_board = new Tile[m_width * m_height];
 }
 
 Board::~Board()
@@ -45,7 +46,7 @@ int Board::getValue(int x, int y) const
 	if(!inBounds(index))
 		return -1;
 
-	return m_board[index];
+	return m_board[index].getValue();
 }
 
 /********************************************************************************\
@@ -64,7 +65,7 @@ void Board::setvalue(int x, int y, int value)
 	if(!inBounds(index))
 		return;
 	
-	m_board[index] = value;
+	m_board[index].setValue(value);
 }
 
 

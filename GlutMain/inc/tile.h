@@ -16,6 +16,9 @@ namespace GAME3011_Assignment1
 
 		void init(GameEngine::Entity * owner);
 		void destroy();
+
+		int getValue() const;
+		int setValue(int value);
 		
 		static GameEngine::ComponentType type() { return static_cast<GameEngine::ComponentType>(ComponentType::COMPONENT_TILE); }
 		GameEngine::ComponentType getType() const { return static_cast<GameEngine::ComponentType>(ComponentType::COMPONENT_TILE); }
