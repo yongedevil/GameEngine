@@ -13,10 +13,14 @@
 
 namespace GameEngine
 {
-	class GEngine
+	class Engine
 	{
+	protected:
+		Engine();
+		~Engine();
+
 	public:
-		static GEngine * instance();
+		static Engine * instance();
 
 		void startup();
 		void shutdown();
@@ -27,14 +31,11 @@ namespace GameEngine
 		void keyboard(unsigned char key, int state, int x, int y);
 		void mouse(int button, int state, int x, int y);
 
-	private:
-		GEngine();
-		~GEngine();
 
 
 
 	private:
-		static GEngine * s_instance;
+		static Engine * s_instance;
 		std::time_t lastTime;
 
 		SystemManager * m_sysManager;

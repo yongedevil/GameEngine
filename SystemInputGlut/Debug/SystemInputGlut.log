@@ -1,5 +1,5 @@
-﻿Build started 1/30/2015 10:30:49 AM.
-     1>Project "C:\Users\100723472\Documents\GitHub\GameEngine\SystemInputGlut\SystemInputGlut.vcxproj" on node 5 (Build target(s)).
+﻿Build started 1/30/2015 10:57:32 AM.
+     1>Project "C:\Users\100723472\Documents\GitHub\GameEngine\SystemInputGlut\SystemInputGlut.vcxproj" on node 2 (Build target(s)).
      1>Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\100723472\Documents\GitHub\GameEngine\Debug\SystemInputGlut.lib" EngineCore.lib /NOLOGO Debug\sys_inputGlut.obj
          SystemInputGlut.vcxproj -> C:\Users\100723472\Documents\GitHub\GameEngine\Debug\SystemInputGlut.lib
@@ -7,4 +7,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.26
+Time Elapsed 00:00:00.27

@@ -2,29 +2,29 @@
 
 using namespace GameEngine;
 
-GEngine * GEngine::s_instance = NULL;
+Engine * Engine::s_instance = NULL;
 
-GEngine * GEngine::instance()
+Engine * Engine::instance()
 {
 	if(NULL == s_instance)
 	{
-		s_instance = new GEngine();
+		s_instance = new Engine();
 	}
 
 	return s_instance;
 }
 
-GEngine::GEngine() : lastTime(0), m_sysManager(NULL), m_entManager(NULL)
+Engine::Engine() : lastTime(0), m_sysManager(NULL), m_entManager(NULL)
 {
 }
 
-GEngine::~GEngine()
+Engine::~Engine()
 {
 	delete m_sysManager;
 	delete m_entManager;
 }
 
-void GEngine::startup()
+void Engine::startup()
 {
 	lastTime = std::time(NULL);
 	m_sysManager = new SystemManager();
@@ -35,7 +35,7 @@ void GEngine::startup()
 	m_input = m_sysManager->create<Sys_Input>(); 
 }
 
-void GEngine::shutdown()
+void Engine::shutdown()
 {
 	SystemManager::SystemList::iterator itSys;
 	EntityManager::EntityList::iterator itEnt;
@@ -60,7 +60,7 @@ void GEngine::shutdown()
 }
 
 
-void GEngine::update()
+void Engine::update()
 {
 	std::time_t curTime = std::time(NULL);
 	float dt = static_cast<float>(lastTime - curTime) / CLOCKS_PER_SEC;
@@ -80,7 +80,7 @@ void GEngine::update()
 	}
 }
 
-void GEngine::draw()
+void Engine::draw()
 {
 	if(m_graphics)
 	{
@@ -94,7 +94,7 @@ void GEngine::draw()
 	}
 }
 
-void GEngine::reshape(int width, int height)
+void Engine::reshape(int width, int height)
 {
 	if(m_graphics)
 	{
@@ -102,7 +102,7 @@ void GEngine::reshape(int width, int height)
 	}
 }
 
-void GEngine::keyboard(unsigned char key, int state, int x, int y)
+void Engine::keyboard(unsigned char key, int state, int x, int y)
 {
 	if(m_input)
 	{
@@ -110,7 +110,7 @@ void GEngine::keyboard(unsigned char key, int state, int x, int y)
 	}
 }
 
-void GEngine::mouse(int button, int state, int x, int y)
+void Engine::mouse(int button, int state, int x, int y)
 {
 	if(m_input)
 	{

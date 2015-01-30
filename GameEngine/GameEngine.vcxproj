@@ -12,9 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\gameEngine.h" />
+    <ClInclude Include="inc\transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gameEngine.cpp" />
+    <ClCompile Include="src\transform.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D000A4E1-F2EA-463B-85CE-D49A5A8355F5}</ProjectGuid>

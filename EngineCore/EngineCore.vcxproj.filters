@@ -21,9 +21,6 @@
     <ClCompile Include="src\system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\comp_transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -35,9 +32,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\comp_transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="inc\component.h">
       <Filter>Header Files</Filter>
     </ClInclude>

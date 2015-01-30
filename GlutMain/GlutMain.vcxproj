@@ -74,6 +74,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\board.cpp" />
+    <ClCompile Include="src\boarddrawer.cpp" />
+    <ClCompile Include="src\miningGame.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\board.h" />
+    <ClInclude Include="inc\boarddrawer.h" />
+    <ClInclude Include="inc\miningGame.h" />
+    <ClInclude Include="inc\tile.h" />
+    <ClInclude Include="inc\typedeff_miningGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
