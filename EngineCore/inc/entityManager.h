@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "manager.h"
-
 #include "typedeff.h"
 #include "entity.h"
 

@@ -45,11 +45,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(SolutionDir)Glut\inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(SolutionDir)Glut\inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

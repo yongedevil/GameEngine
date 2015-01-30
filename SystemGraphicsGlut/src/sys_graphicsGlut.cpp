@@ -1,3 +1,7 @@
+
+#include <cstdlib>
+#include <GL\glut.h>
+
 #include "sys_graphicsGlut.h"
 
 using namespace GameEngine;
