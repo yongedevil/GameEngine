@@ -19,18 +19,15 @@
     <ClCompile Include="src\board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\boarddrawer.cpp">
+    <ClCompile Include="src\miningGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\miningGame.cpp">
+    <ClCompile Include="src\tile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\board.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\boarddrawer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="inc\tile.h">

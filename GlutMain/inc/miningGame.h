@@ -4,10 +4,11 @@
 #include <ctime>
 
 #include "gameEngine.h"
-#include "board.h"
 
 namespace GAME3011_Assignment1
 {
+	class Board;
+
 	class MiningGame : public GameEngine::Engine
 	{
 	protected:

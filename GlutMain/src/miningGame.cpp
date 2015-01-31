@@ -1,10 +1,10 @@
 #include "miningGame.h"
+#include "board.h"
 
 using namespace GAME3011_Assignment1;
 
-MiningGame::MiningGame() : GameEngine::Engine()
+MiningGame::MiningGame() : GameEngine::Engine(), m_board(NULL)
 {
-	m_board = new Board(16, 16);
 }
 
 MiningGame::~MiningGame()
@@ -21,6 +21,11 @@ MiningGame * MiningGame::instance()
 void MiningGame::startup()
 {
 	GameEngine::Engine::startup();
+
+	GameEngine::Entity * boardEnt = GameEngine::Engine::createEntity<GameEngine::Entity>();
+
+	m_board = boardEnt->addComponent<Board>();
+	m_board->init(16, 16);
 }
 
 void MiningGame::shutdown()
@@ -31,5 +36,4 @@ void MiningGame::shutdown()
 void MiningGame::update()
 {
 	GameEngine::Engine::update();
-	GameEngine::Engine::draw();
 }

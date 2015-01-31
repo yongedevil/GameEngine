@@ -5,7 +5,8 @@ using namespace GameEngine;
 Component::Component() :
 m_id((ComponentID)std::clock()),
 m_owner(0),
-m_active(false)
+m_active(true),
+m_initilized(false)
 {
 }
 
@@ -13,29 +14,29 @@ Component::~Component()
 {
 }
 
-void Component::init(Entity * owner)
+void Component::init()
 {
-	m_owner = owner;
-	m_active = true;
+	m_initilized = true;
 }
 
 void Component::updateComponent(float dt)
 {
-	if(m_active)
+	if (m_active && m_initilized)
 	{
 		update(dt);
 	}
 }
 
-void Component::drawComponent(class Sys_Graphics * graphics)
+void Component::drawComponent()
 {
-	if(m_active)
+	if (m_active && m_initilized)
 	{
-		draw(graphics);
+		draw();
 	}
 }
 
-void Component::draw(class Sys_Graphics * graphics)
+void Component::setOwner(Entity * owner)
 {
+	m_owner = owner;
 }
 

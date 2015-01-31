@@ -7,13 +7,7 @@ namespace GAME3011_Assignment1
 {
 	enum class ComponentType : short
 	{
-		COMPONENT_TILE = GameEngine::ComponentType::COMPONENT_USERDEFINED
-	};
-
-	enum class EntityType : short
-	{
-		ENTITY_USERDEFINED
-		//insert more types starting with ENTITY_USERDEFINED
+		COMPONENT_BOARD = static_cast<short>(GameEngine::ComponentType::COMPONENT_USERDEFINED)
 	};
 }
 

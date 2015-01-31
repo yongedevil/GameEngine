@@ -1,31 +1,108 @@
 #include "board.h"
 #include "tile.h"
 
+#include <GL\glut.h>
+
 using namespace GAME3011_Assignment1;
+
+
+const int VALUE_MAX = 1000;
+
+const float * Board::COLOUR_HIDDEN = new float[4]{ 1.0f, 0.0f, 0.0f, 1.0f };
+const float * Board::COLOUR_MIN = new float[4]{ 1.0f, 1.0f, 1.0f, 1.0f };
+const float * Board::COLOUR_QUARTER = new float[4]{ 1.0f, 1.0f, 0.0f, 1.0f };
+const float * Board::COLOUR_HALF = new float[4]{ 1.0f, 0.75f, 0.0f, 1.0f };
+const float * Board::COLOUR_MAX = new float[4]{ 1.0f, 0.5f, 0.0f, 1.0f };
 
 /********************************************************************************\
  * Board class, Constructor														*
- * Creates a board with the specified size. If dimentions are invalid it		*
- * defaults to 16.																*
- *																				*
- * Paramaters:																	*
- *   width: width of the board.													*
- *   height: height of the board.												*
 \********************************************************************************/
-Board::Board(int width, int height) : m_width(width), m_height(height)
+Board::Board() :
+GameEngine::Component(),
+m_board(NULL),
+m_width(0),
+m_height(0),
+m_halfTileWidth(0.5f),
+m_halfTileHeight(0.5f),
+m_tileSpacing(0.1f)
 {
-	if(m_width <= 0)
-		m_width = 16;
-
-	if(m_height <= 0)
-		m_height = 16;
-
-	m_board = new Tile[m_width * m_height];
 }
 
 Board::~Board()
 {
 	delete[] m_board;
+}
+
+/********************************************************************************\
+* Board class, init function													*
+* Creates a board with the specified size. If dimentions are invalid it			*
+* defaults to 16.																*
+*																				*
+* Paramaters:																	*
+*   width: width of the board.													*
+*   height: height of the board.												*
+\********************************************************************************/
+void Board::init(int width, int height)
+{
+	GameEngine::Component::init();
+
+	m_width = width;
+	m_height = height;
+
+	if (m_width < 0)
+		m_width = 16;
+
+	if (m_height < 0)
+		m_height = 16;
+
+	m_board = new Tile[m_width * m_height];
+}
+
+
+void Board::destroy()
+{
+}
+
+void Board::update(float dt)
+{
+
+}
+
+void Board::draw()
+{
+	float const* colour;
+	int x, y;
+	float halfWidth = m_width / 2.0f;
+	float halfHeight = m_height / 2.0f;
+
+	for (int i = 0; i < m_width * m_height; ++i)
+	{
+		getXY(i, x, y);
+
+		if (m_board[i].getVisible())
+		{
+			colour = COLOUR_HIDDEN;
+		}
+		else
+		{
+			colour = getColour(m_board[i].getValue());
+		}
+
+		glPushMatrix();
+		glColor3fv(colour);
+		glTranslatef((x - halfWidth) * (m_halfTileWidth * 2 + m_tileSpacing), (y - halfHeight) * (m_halfTileHeight * 2 + m_tileSpacing), 0);
+
+		glBegin(GL_QUADS);
+		{
+			glVertex3f(-m_halfTileWidth, -m_halfTileHeight, 0.0f);
+			glVertex3f( m_halfTileWidth, -m_halfTileHeight, 0.0f);
+			glVertex3f( m_halfTileWidth,  m_halfTileHeight, 0.0f);
+			glVertex3f(-m_halfTileWidth,  m_halfTileHeight, 0.0f);
+		}
+		glEnd();
+
+		glPopMatrix();
+	}
 }
 
 /********************************************************************************\
@@ -66,15 +143,6 @@ void Board::setvalue(int x, int y, int value)
 		return;
 	
 	m_board[index].setValue(value);
-}
-
-
-/********************************************************************************\
- * Board class, dispaly function												*
- * openGL calls to display the board											*
-\********************************************************************************/
-void Board::display()
-{
 }
 
 /********************************************************************************\
@@ -196,4 +264,12 @@ int Board::getAjacentIndex(eAdjacentDirection direction, int index) const
 	}
 
 	return adjacentIndex;
+}
+
+float const* Board::getColour(int value) const
+{
+	if (value >= VALUE_MAX)
+	{
+		return COLOUR_MAX;
+	}
 }

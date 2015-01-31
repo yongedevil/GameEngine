@@ -1,31 +1,27 @@
 #ifndef _TILE_H
 #define _TILE_H
 
-#include "component.h"
-#include "typedeff_miningGame.h"
-
 namespace GAME3011_Assignment1
 {
-	class Tile : public GameEngine::Component
+	class Tile
 	{
 	private:
 		int m_value;
+		bool m_visible;
 
 	public:
 		Tile();
+		~Tile();
 
-		void init(GameEngine::Entity * owner);
-		void destroy();
+		int getValue() const { return m_value; }
+		void setValue(int value) { m_value = value; }
 
-		int getValue() const;
-		int setValue(int value);
+		bool getVisible() const { return m_visible; }
+		void setVisible(bool visible) { m_visible = visible; }
 		
-		static GameEngine::ComponentType type() { return static_cast<GameEngine::ComponentType>(ComponentType::COMPONENT_TILE); }
-		GameEngine::ComponentType getType() const { return static_cast<GameEngine::ComponentType>(ComponentType::COMPONENT_TILE); }
+		void draw();
 
 	protected:
-		void update(float dt);
-		void draw(class Sys_Graphics * graphics);
 	};
 }
 

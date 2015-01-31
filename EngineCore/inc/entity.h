@@ -34,7 +34,7 @@ namespace GameEngine
 
 		virtual void init();
 		virtual void update(float dt);
-		virtual void draw(class Sys_Graphics * graphics);
+		virtual void draw();
 		virtual void destroy();
 
 		//type
@@ -88,6 +88,7 @@ namespace GameEngine
 	{
 		T * comp = new T();
 		m_componentList->push_back(comp);
+		comp->setOwner(this);
 
 		return comp;
 	}

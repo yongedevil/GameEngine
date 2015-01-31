@@ -28,6 +28,8 @@ namespace GameEngine
 	\********************************************/
 	class Component
 	{
+		friend class Entity;
+
 		/**********\
 		 * Fields *		
 		\**********/
@@ -37,6 +39,7 @@ namespace GameEngine
 		ComponentID m_id;
 		Entity * m_owner;
 		bool m_active;
+		bool m_initilized;
 
 
 		/************\
@@ -48,9 +51,9 @@ namespace GameEngine
 		virtual ~Component();
 
 		//init, update, destroy
-		virtual void init(Entity * owner);
+		virtual void init();
 		void updateComponent(float dt);
-		void drawComponent(class Sys_Graphics * graphics);
+		void drawComponent();
 		virtual void destroy() = 0;
 
 
@@ -68,7 +71,10 @@ namespace GameEngine
 
 	protected:		
 		virtual void update(float dt) = 0;
-		virtual void draw(class Sys_Graphics * graphics);
+		virtual void draw() = 0;
+
+	private:
+		void setOwner(Entity * owner);
 	};
 
 	/*

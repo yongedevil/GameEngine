@@ -21,7 +21,7 @@ namespace GameEngine
 		~Transform();
 
 		//init, update, destroy
-		void init(Entity * ent);
+		void init();
 		void destroy();
 
 

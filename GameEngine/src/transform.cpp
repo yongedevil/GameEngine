@@ -12,9 +12,9 @@ Transform::~Transform()
 {
 }
 
-void Transform::init(Entity *ent)
+void Transform::init()
 {
-	Component::init(ent);
+	Component::init();
 }
 
 void Transform::update(float dt)

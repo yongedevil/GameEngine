@@ -1,7 +1,8 @@
 #ifndef _BOARD_H
 #define _BOARD_H
 
-#include "entity.h"
+#include "component.h"
+#include "typedeff_miningGame.h"
 
 namespace GAME3011_Assignment1
 {
@@ -11,7 +12,7 @@ namespace GAME3011_Assignment1
 	 * Board class											*
 	 * Represents the game board as a 2D grid of int values	*
 	\********************************************************/
-	class Board : public Entity
+	class Board : public GameEngine::Component
 	{
 		/****************\
 		 * enum			*
@@ -36,16 +37,43 @@ namespace GAME3011_Assignment1
 		Tile * m_board;
 		int m_width;
 		int m_height;
+
+		float m_halfTileWidth;
+		float m_halfTileHeight;
+		float m_tileSpacing;
+
+		static const int VALUE_MAX;
+
+		static const float * COLOUR_HIDDEN;
+		static const float * COLOUR_MIN;
+		static const float * COLOUR_QUARTER;
+		static const float * COLOUR_HALF;
+		static const float * COLOUR_MAX;
 		
 
-		/****************\
-		 * Functions	*
-		\****************/
+		/****************************\
+		 * Inherited from Component	*
+		\****************************/
 	public:
-		//Constructor
-		Board(int width, int height);
+		Board();
 		~Board();
 
+		void init(int width, int height);
+		void destroy();
+
+		static GameEngine::ComponentType type() { return static_cast<GameEngine::ComponentType>(ComponentType::COMPONENT_BOARD); }
+		GameEngine::ComponentType getType() const { return static_cast<GameEngine::ComponentType>(ComponentType::COMPONENT_BOARD); }
+
+	protected:
+		void update(float dt);
+		void draw();
+
+
+
+		/*******************\
+		* Board functtions *
+		\*******************/
+	public:
 		//Getters and Setters
 		int getValue(int x, int y) const;
 		void setvalue(int x, int y, int value);
@@ -56,13 +84,13 @@ namespace GAME3011_Assignment1
 		//Calcuating Adjacent indexes
 		int * getAjacentIndexes(int index) const;
 		int getAjacentIndex(eAdjacentDirection direction, int index) const;
-
-		void display();
-
+		
 	private:
 		//Converstions between x, y and index
 		int getIndex(int x, int y) const;
 		int getXY(int index, int &x, int &y) const;
+
+		float const* getColour(int value) const;
 
 
 	};

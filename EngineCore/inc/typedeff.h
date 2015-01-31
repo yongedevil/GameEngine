@@ -10,15 +10,15 @@ namespace GameEngine
 	{
 		COMPONENT_BASE,
 		COMPONENT_TRANSFORM,
-		//insert more types here
-		NUM_TYPES
+		COMPONENT_USERDEFINED
+		//insert more types starting from USERDEFINED
 	};
 
 	enum class EntityType : short
 	{
 		ENTITY_BASE,
-		//insert more types here
-		NUM_TYPES
+		ENTITY_USERDEFINED
+		//insert more types starting from USERDEFINED
 	};
 }
 

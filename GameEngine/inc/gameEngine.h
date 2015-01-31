@@ -31,7 +31,8 @@ namespace GameEngine
 		void keyboard(unsigned char key, int state, int x, int y);
 		void mouse(int button, int state, int x, int y);
 
-
+		template<class T>
+		T * createEntity();
 
 
 	private:
@@ -44,6 +45,12 @@ namespace GameEngine
 		Sys_Graphics * m_graphics;
 		Sys_Input * m_input;
 	};
+
+	template<class T>
+	T * Engine::createEntity()
+	{
+		return m_entManager->create<T>();
+	}
 }
 
 #endif
