@@ -17,8 +17,8 @@ void initlize();
 
 int main (int argc, char ** argv)
 {
-	int WindowWidth = 500;
-	int WindowHeight = 500;
+	int WindowWidth = 600;
+	int WindowHeight = 600;
 
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE);
@@ -31,7 +31,6 @@ int main (int argc, char ** argv)
 	glutKeyboardUpFunc(keyboardUp);
 	glutMouseFunc(mouse);
 	glutIdleFunc(idle);
-	glClearColor(0.0, 0.0, 0.0, 0.0);
 
 	initlize();
 	glutMainLoop();
@@ -41,12 +40,6 @@ int main (int argc, char ** argv)
 
 void initlize()
 {
-	glDisable(GL_LIGHTING);
-	glEnable(GL_DEPTH_TEST);
-
-	glDisable(GL_BLEND);
-	glBlendFunc(GL_ONE, GL_ONE);
-
 	MiningGame * game = MiningGame::instance();
 	game->startup();
 }
@@ -56,6 +49,7 @@ void idle()
 {
 	MiningGame * game = MiningGame::instance();
 	game->update();
+
 	glutPostRedisplay();
 }
 

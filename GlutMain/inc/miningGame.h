@@ -23,7 +23,11 @@ namespace GAME3011_Assignment1
 
 		void update();
 
+		void keyboard(unsigned char key, int state, int x, int y);
+		void mouse(int button, int state, int x, int y);
+
 	private:
+		static MiningGame * s_instance;
 		Board * m_board;
 
 		GameEngine::Engine * m_engne;

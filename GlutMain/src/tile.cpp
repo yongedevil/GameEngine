@@ -11,7 +11,3 @@ Tile::~Tile()
 {
 
 }
-
-void Tile::draw()
-{
-}

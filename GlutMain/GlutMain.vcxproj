@@ -39,11 +39,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)inc;$(SolutionDir)Glut\inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)GameEngine\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)inc;$(SolutionDir)Glut\inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)GameEngine\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Debug;$(SolutionDir)Glut\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)inc;$(SolutionDir)Glut\inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)GameEngine\inc;$(SolutionDir)SystemGraphicsGlut\inc;$(SolutionDir)SystemInputGlut\inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)inc;$(SolutionDir)Glut\inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)GameEngine\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Release;$(SolutionDir)Glut\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

@@ -8,11 +8,13 @@
 #include "systemManager.h"
 #include "entityManager.h"
 
-#include "sys_graphicsGlut.h"
-#include "sys_inputGlut.h"
-
 namespace GameEngine
 {
+	class SystemManager;
+	class EntityManager;
+	class Sys_Graphics;
+	class Sys_Input;
+
 	class Engine
 	{
 	protected:
@@ -28,12 +30,16 @@ namespace GameEngine
 		void draw();
 
 		void reshape(int width, int height);
-		void keyboard(unsigned char key, int state, int x, int y);
-		void mouse(int button, int state, int x, int y);
+		virtual void keyboard(unsigned char key, int state, int x, int y);
+		virtual void mouse(int button, int state, int x, int y);
 
 		template<class T>
 		T * createEntity();
 
+		int screenWidth() const;
+		int screenHeight() const;
+
+		void screenToWorld(int screenX, int screenY, float depthZ, float & worldX, float & worldY) const;
 
 	private:
 		static Engine * s_instance;

@@ -35,8 +35,8 @@ namespace GAME3011_Assignment1
 		\****************/
 	private:
 		Tile * m_board;
-		int m_width;
-		int m_height;
+		int m_numCol;
+		int m_numRow;
 
 		float m_halfTileWidth;
 		float m_halfTileHeight;
@@ -58,7 +58,7 @@ namespace GAME3011_Assignment1
 		Board();
 		~Board();
 
-		void init(int width, int height);
+		void init(int col, int row);
 		void destroy();
 
 		static GameEngine::ComponentType type() { return static_cast<GameEngine::ComponentType>(ComponentType::COMPONENT_BOARD); }
@@ -75,24 +75,27 @@ namespace GAME3011_Assignment1
 		\*******************/
 	public:
 		//Getters and Setters
-		int getValue(int x, int y) const;
-		void setvalue(int x, int y, int value);
+		int getValue(int col, int row) const;
+		void setvalue(int col, int row, int value);
 
-		bool inBounds(int x, int y) const { return x >= 0 && x < m_width && y >= 0 && y < m_height; }
-		bool inBounds(int index) const { return index >= 0 && index < m_width * m_height; }
+		bool inBounds(int col, int row) const { return col >= 0 && col < m_numCol && row >= 0 && row < m_numRow; }
+		bool inBounds(int index) const { return index >= 0 && index < m_numCol * m_numRow; }
 		
 		//Calcuating Adjacent indexes
 		int * getAjacentIndexes(int index) const;
 		int getAjacentIndex(eAdjacentDirection direction, int index) const;
+
+		bool getColRow(float x, float y, int & col, int & row) const;
 		
 	private:
-		//Converstions between x, y and index
-		int getIndex(int x, int y) const;
-		int getXY(int index, int &x, int &y) const;
+		//Converstions between col, row and index
+		int getIndex(int col, int row) const;
+		int getColRow(int index, int & col, int & row) const;
 
 		float const* getColour(int value) const;
 
-
+		bool isInCol(int col, float x) const;
+		bool isInRow(int row, float y) const;
 	};
 }
 

@@ -1,5 +1,10 @@
 #include "gameEngine.h"
 
+#include "sys_graphicsGlut.h"
+#include "sys_inputGlut.h"
+
+#include "vector.h"
+
 using namespace GameEngine;
 
 Engine * Engine::s_instance = NULL;
@@ -84,13 +89,10 @@ void Engine::draw()
 {
 	if(m_graphics)
 	{
-		m_graphics->display();
+		m_graphics->displayStart();
+		m_graphics->display(m_entManager);
+		m_graphics->displayEnd();
 		
-		EntityManager::EntityList::iterator itEnt;
-		for(itEnt = m_entManager->begin(); itEnt != m_entManager->end(); ++itEnt)
-		{
-			(*itEnt)->draw();
-		}
 	}
 }
 
@@ -116,4 +118,19 @@ void Engine::mouse(int button, int state, int x, int y)
 	{
 		m_input->mouse(button, state, x, y);
 	}
+}
+
+
+int Engine::screenWidth() const
+{
+	return m_graphics->screenWidth();
+}
+int Engine::screenHeight() const
+{
+	return m_graphics->screenHeight();
+}
+
+void Engine::screenToWorld(int screenX, int screenY, float depthZ, float & worldX, float & worldY) const
+{
+	m_graphics->screenToWorld(screenX, screenY, depthZ, worldX, worldY);
 }

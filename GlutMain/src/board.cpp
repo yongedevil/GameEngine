@@ -6,7 +6,7 @@
 using namespace GAME3011_Assignment1;
 
 
-const int VALUE_MAX = 1000;
+const int Board::VALUE_MAX = 1000;
 
 const float * Board::COLOUR_HIDDEN = new float[4]{ 1.0f, 0.0f, 0.0f, 1.0f };
 const float * Board::COLOUR_MIN = new float[4]{ 1.0f, 1.0f, 1.0f, 1.0f };
@@ -20,10 +20,10 @@ const float * Board::COLOUR_MAX = new float[4]{ 1.0f, 0.5f, 0.0f, 1.0f };
 Board::Board() :
 GameEngine::Component(),
 m_board(NULL),
-m_width(0),
-m_height(0),
-m_halfTileWidth(0.5f),
-m_halfTileHeight(0.5f),
+m_numCol(0),
+m_numRow(0),
+m_halfTileWidth(0.2f),
+m_halfTileHeight(0.2f),
 m_tileSpacing(0.1f)
 {
 }
@@ -42,20 +42,20 @@ Board::~Board()
 *   width: width of the board.													*
 *   height: height of the board.												*
 \********************************************************************************/
-void Board::init(int width, int height)
+void Board::init(int col, int row)
 {
 	GameEngine::Component::init();
 
-	m_width = width;
-	m_height = height;
+	m_numCol = col;
+	m_numRow = row;
 
-	if (m_width < 0)
-		m_width = 16;
+	if (m_numCol < 0)
+		m_numCol = 16;
 
-	if (m_height < 0)
-		m_height = 16;
+	if (m_numRow < 0)
+		m_numRow = 16;
 
-	m_board = new Tile[m_width * m_height];
+	m_board = new Tile[m_numCol * m_numRow];
 }
 
 
@@ -70,37 +70,38 @@ void Board::update(float dt)
 
 void Board::draw()
 {
-	float const* colour;
-	int x, y;
-	float halfWidth = m_width / 2.0f;
-	float halfHeight = m_height / 2.0f;
+	float const* colour = COLOUR_HIDDEN;
+	int col, row;
 
-	for (int i = 0; i < m_width * m_height; ++i)
+	float halfX = (m_numCol-1) / 2.0f;
+	float halfY = (m_numRow-1) / 2.0f;
+
+	float tileWidth = (m_numCol * m_halfTileWidth*2 + (m_numCol - 1) * m_tileSpacing) / m_numCol;
+	float tileHeight = (m_numRow * m_halfTileHeight*2 + (m_numRow - 1) * m_tileSpacing) / m_numRow;
+
+	for (int i = 0; i < m_numCol * m_numRow; ++i)
 	{
-		getXY(i, x, y);
+		getColRow(i, col, row);
 
 		if (m_board[i].getVisible())
-		{
-			colour = COLOUR_HIDDEN;
-		}
-		else
 		{
 			colour = getColour(m_board[i].getValue());
 		}
 
 		glPushMatrix();
-		glColor3fv(colour);
-		glTranslatef((x - halfWidth) * (m_halfTileWidth * 2 + m_tileSpacing), (y - halfHeight) * (m_halfTileHeight * 2 + m_tileSpacing), 0);
-
-		glBegin(GL_QUADS);
 		{
-			glVertex3f(-m_halfTileWidth, -m_halfTileHeight, 0.0f);
-			glVertex3f( m_halfTileWidth, -m_halfTileHeight, 0.0f);
-			glVertex3f( m_halfTileWidth,  m_halfTileHeight, 0.0f);
-			glVertex3f(-m_halfTileWidth,  m_halfTileHeight, 0.0f);
-		}
-		glEnd();
+			glColor4fv(colour);
+			glTranslatef((col - halfX) * tileWidth, (row - halfY) * tileHeight, 0.0f);
 
+			glBegin(GL_QUADS);
+			{
+				glVertex2f(-m_halfTileWidth, -m_halfTileHeight);
+				glVertex2f( m_halfTileWidth, -m_halfTileHeight);
+				glVertex2f( m_halfTileWidth,  m_halfTileHeight);
+				glVertex2f(-m_halfTileWidth,  m_halfTileHeight);
+			}
+			glEnd();
+		}
 		glPopMatrix();
 	}
 }
@@ -110,15 +111,15 @@ void Board::draw()
  * Returns the value at (x, y).  If out of bounds it returns -1.				*
  *																				*
  * Paramaters:																	*
- *   x: the x corrdinate.														*
- *   y: the y corrdinate.														*
+ *   row: the row corrdinate.													*
+ *   col: the colunm corrdinate.												*
  * Returns:																		*
  *   the value of the cell at (x, y) if successful.								*
  *   -1 if (x, y) is out of bounds.												*
 \********************************************************************************/
-int Board::getValue(int x, int y) const
+int Board::getValue(int col, int row) const
 {
-	int index = getIndex(x, y);
+	int index = getIndex(col, row);
 	
 	if(!inBounds(index))
 		return -1;
@@ -131,13 +132,13 @@ int Board::getValue(int x, int y) const
  * Sets the value at (x, y).  If out of bounds nothing is changed.				*
  *																				*
  * Paramaters:																	*
- *   x: the x corrdinate.														*
- *   y: the y corrdinate.														*
+ *   row: the row corrdinate.													*
+ *   col: the colunm corrdinate.												*
  *   value: the value to set the cell at (x, y) to.								*
 \********************************************************************************/
-void Board::setvalue(int x, int y, int value)
+void Board::setvalue(int col, int row, int value)
 {
-	int index = getIndex(x, y);
+	int index = getIndex(col, row);
 
 	if(!inBounds(index))
 		return;
@@ -150,18 +151,18 @@ void Board::setvalue(int x, int y, int value)
  * Converts (x, y) into an index position.										*
  *																				*
  * Paramaters:																	*
- *   x: the x corrdinate.														*
- *   y: the y corrdinate.														*
+ *   col: the colunm corrdinate.												*
+ *   row: the row corrdinate.													*
  * Returns:																		*
  *   index of the cell at (x, y) if successful.									*
  *   -1 if (x, y) is out of bounds.												*
 \********************************************************************************/
-int Board::getIndex(int x, int y) const
+int Board::getIndex(int col, int row) const
 {
-	if(!inBounds(x, y))
+	if (!inBounds(col, row))
 		return -1;
 
-	return y*m_width + x;
+	return row*m_numCol + col;
 }
 
 /********************************************************************************\
@@ -170,19 +171,19 @@ int Board::getIndex(int x, int y) const
  *																				*
  * Paramaters:																	*
  *   index: the index to convert to corrdinates.								*
- *   x: reference value to store the output for the x corrdinate.				*
- *   y: reference value to store the output for the y corrdinate.				*
+ *   col: reference value to store the output for the colunm corrdinate.		*
+ *   row: reference value to store the output for the row corrdinate.			*
  * Returns:																		*
  *   1 if successful.															*
  *  -1 if index is out of bounds.												*
 \********************************************************************************/
-int Board::getXY(int index, int &x, int &y) const
+int Board::getColRow(int index, int &col, int &row) const
 {
-	if(!inBounds(x, y))
+	if(!inBounds(index))
 		return -1;
 
-	x = index % m_width;
-	y = index / m_width;
+	col = index % m_numCol;
+	row = index / m_numCol;
 
 	return 1;
 }
@@ -224,46 +225,78 @@ int * Board::getAjacentIndexes(int index) const
 int Board::getAjacentIndex(eAdjacentDirection direction, int index) const
 {
 	int adjacentIndex = -1;
-	int x, y;
+	int col, row;
 
-	getXY(index, x, y);
+	getColRow(index, col, row);
 
 	switch(direction)
 	{
 	case eAdjacentDirection::UP_LEFT:
-		adjacentIndex = getIndex(x-1, y-1);
+		adjacentIndex = getIndex(col-1, row-1);
 		break;
 
 	case eAdjacentDirection::UP:
-		adjacentIndex = getIndex(x, y-1);
+		adjacentIndex = getIndex(col, row-1);
 		break;
 
 	case eAdjacentDirection::UP_RIGHT:
-		adjacentIndex = getIndex(x+1, y-1);
+		adjacentIndex = getIndex(col+1, row-1);
 		break;
 
 	case eAdjacentDirection::LEFT:
-		adjacentIndex = getIndex(x-1, y);
+		adjacentIndex = getIndex(col-1, row);
 		break;
 
 	case eAdjacentDirection::RIGHT:
-		adjacentIndex = getIndex(x+1, y);
+		adjacentIndex = getIndex(col+1, row);
 		break;
 
 	case eAdjacentDirection::DOWN_LEFT:
-		adjacentIndex = getIndex(x-1, y+1);
+		adjacentIndex = getIndex(col-1, row+1);
 		break;
 
 	case eAdjacentDirection::DOWN:
-		adjacentIndex = getIndex(x, y+1);
+		adjacentIndex = getIndex(col, row+1);
 		break;
 
 	case eAdjacentDirection::DOWN_RIGHT:
-		adjacentIndex = getIndex(x+1, y+1);
+		adjacentIndex = getIndex(col+1, row+1);
 		break;
 	}
 
 	return adjacentIndex;
+}
+
+bool Board::getColRow(float x, float y, int & col, int & row) const
+{
+	bool found = false;
+
+	float halfX = (m_numCol - 1) / 2.0f;
+	float halfY = (m_numRow - 1) / 2.0f;
+
+	float tileWidth = (m_numCol * m_halfTileWidth * 2 + (m_numCol - 1) * m_tileSpacing) / m_numCol;
+	float tileHeight = (m_numRow * m_halfTileHeight * 2 + (m_numRow - 1) * m_tileSpacing) / m_numRow;
+
+	//(col - halfX) * tileWidth
+	//(row - halfY) * tileHeight
+
+	for (int i = 0; !found && i < m_numCol; ++i)
+	{
+		if (isInCol(i, x))
+		{
+			for (int j = 0; !found && j < m_numRow; ++j)
+			{
+				if (isInRow(j, y))
+				{
+					found = true;
+					col = i;
+					row = j;
+				}
+			}
+		}
+	}
+
+	return found;
 }
 
 float const* Board::getColour(int value) const
@@ -272,4 +305,22 @@ float const* Board::getColour(int value) const
 	{
 		return COLOUR_MAX;
 	}
+}
+
+bool Board::isInCol(int col, float x) const
+{
+	float colCentre;
+
+	colCentre = (col - (m_numCol - 1) / 2.0f) * (m_numCol * m_halfTileWidth * 2 + (m_numCol - 1) * m_tileSpacing) / m_numCol;
+
+	return (x > colCentre - m_halfTileWidth && x < colCentre + m_halfTileWidth);
+}
+
+bool Board::isInRow(int row, float y) const
+{
+	float rowCentre;
+
+	rowCentre = (row - (m_numRow - 1) / 2.0f) * (m_numRow * m_halfTileHeight * 2 + (m_numRow - 1) * m_tileSpacing) / m_numRow;
+
+	return (y > rowCentre - m_halfTileHeight && y < rowCentre + m_halfTileHeight);
 }

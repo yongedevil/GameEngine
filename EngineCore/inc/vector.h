@@ -73,7 +73,7 @@ namespace GameEngine
 
 
 		/***********************\
-		 * Getters and Setters *
+		* Getters and Setters *
 		\***********************/
 		T x() const { return m_vals[0]; }
 		T y() const { return m_vals[1]; }
@@ -98,7 +98,7 @@ namespace GameEngine
 		static Vector3<T> zero();
 		static T dot(Vector3<T> const& vec1, Vector3<T> const& vec2);
 		static Vector3<T> cross(Vector3<T> const& vec1, Vector3<T> const& vec2);
-	
+
 
 		/********************************\
 		* Assignment Operator overloads *
@@ -117,6 +117,66 @@ namespace GameEngine
 
 	typedef Vector3<float> Vector3f;
 
+
+	template<class T>
+	class Vector4
+	{
+	private:
+		T m_vals[4];
+
+	public:
+		Vector4(T x, T y, T z, T w)		{ m_vals[0] = x;		m_vals[1] = y;			m_vals[2] = z;			m_vals[3] = w; }
+		Vector4()						{ m_vals[0] = 0;		m_vals[1] = 0;			m_vals[2] = 0;			m_vals[3] = 0; }
+		Vector4(Vector4<T> const& vec2) { m_vals[0] = vec2.x(); m_vals[1] = vec2.y();	m_vals[2] = vec2.z();	m_vals[3] = vec2.w(); }
+		~Vector4() { }
+
+
+		/***********************\
+		* Getters and Setters *
+		\***********************/
+		T x() const { return m_vals[0]; }
+		T y() const { return m_vals[1]; }
+		T z() const { return m_vals[2]; }
+		T w() const { return m_vals[3]; }
+		T x(T x) { return m_vals[0] = x; }
+		T y(T y) { return m_vals[1] = y; }
+		T z(T z) { return m_vals[2] = z; }
+		T w(T w) { return m_vals[3] = w; }
+
+
+		/*************\
+		* Operations *
+		\*************/
+		T magnitude() const;
+		T magnitudeSqr() const;
+
+		void normalize();
+		Vector4<T> normalized() const;
+
+		T dot(Vector4<T> const& vec2) const { return Vector4<T>::dot(this, vec2); }
+		Vector4<T> cross(Vector4<T> const& vec2) const { return Vector4<T>::cross(this, vec2); }
+
+		static Vector4<T> zero();
+		static T dot(Vector4<T> const& vec1, Vector4<T> const& vec2);
+		static Vector4<T> cross(Vector4<T> const& vec1, Vector4<T> const& vec2);
+
+
+		/********************************\
+		* Assignment Operator overloads *
+		\********************************/
+		//Assignment
+		Vector4<T> & operator=(Vector4<T> const& vec2);
+
+		//Addition, Subtraction Assignment
+		Vector4<T> & operator+=(Vector4<T> const& vec2);
+		Vector4<T> & operator-=(Vector4<T> const& vec2);
+
+		//Multiplication, Division Assignment
+		Vector4<T> & operator*=(T scaler);
+		Vector4<T> & operator/=(T scaler);
+	};
+
+	typedef Vector4<float> Vector4f;
 
 
 
@@ -375,6 +435,146 @@ namespace GameEngine
 		if (0 == scaler)
 			scaler = 1;
 		return Vector3<T>(vec1.x() / scaler, vec1.y() / scaler, vec1.z() / scaler);
+	}
+
+
+	/*********************\
+	* Operations Vector4 *
+	\*********************/
+	template<class T>
+	T Vector4<T>::magnitude() const { return std::sqrt(magnitudeSqr()); }
+	template<class T>
+	T Vector4<T>::magnitudeSqr() const { return x() * x() + y() * y() + z() * z() + w() * w(); }
+
+	template<class T>
+	void Vector4<T>::normalize()
+	{
+		if (0 != magnitudeSqr())
+			*this /= magnitude();
+	}
+	template<class T>
+	Vector4<T> Vector4<T>::normalized() const
+	{
+		return 0 != magnitudeSqr() ? *this / magnitude() : *this;
+	}
+
+	template<class T>
+	Vector4<T> Vector4<T>::zero()
+	{
+		return Vector4<T>(0, 0, 0);
+	}
+
+	template<class T>
+	T Vector4<T>::dot(Vector4<T> const& vec1, Vector4<T> const& vec2)
+	{
+		return vec1.x() * vec2.x() + vec1.y() * vec2.y() + vec1.z() * vec2.z() + vec1.w() * vec2.w();
+	}
+
+	template<class T>
+	Vector4<T> Vector4<T>::cross(Vector4<T> const& vec1, Vector4<T> const& vec2)
+	{
+		return Vector4<T>(vec1.y()*vec2.z() - vec1.z()*vec2.y(), vec1.z()*vec2.x() - vec1.x()*vec2.z(), vec1.x()*vec2.y() - vec1.y()*vec2.x());
+	}
+
+
+	/*****************************\
+	* Operator overloads Vector3 *
+	\*****************************/
+	//Assignment
+	template<class T>
+	Vector4<T> & Vector4<T>::operator=(Vector4<T> const& vec2)
+	{
+		x(vec2.x());
+		y(vec2.y());
+		z(vec2.z());
+		w(vec2.x());
+		return *this;
+	}
+
+	//Addition, Subtraction Assignment
+	template<class T>
+	Vector4<T> & Vector4<T>::operator+=(Vector4<T> const& vec2)
+	{
+		x(x() + vec2.x());
+		y(y() + vec2.y());
+		z(z() + vec2.z());
+		w(w() + vec2.w());
+		return *this;
+	}
+	template<class T>
+	Vector4<T> & Vector4<T>::operator-=(Vector4<T> const& vec2)
+	{
+		x(x() - vec2.x());
+		y(y() - vec2.y());
+		z(z() - vec2.z());
+		w(w() - vec2.w());
+		return *this;
+	}
+
+	//Multiplication, Division Assignment
+	template<class T>
+	Vector4<T> & Vector4<T>::operator*=(T scaler)
+	{
+		x(x() * scaler);
+		y(y() * scaler);
+		z(z() * scaler);
+		w(w() * scaler);
+		return *this;
+	}
+	template<class T>
+	Vector4<T> & Vector4<T>::operator/=(T scaler)
+	{
+		if (0 != scaler)
+		{
+			x(x() / scaler);
+			y(y() / scaler);
+			z(z() / scaler);
+			w(w() / scaler);
+		}
+		return *this;
+	}
+
+	//Equals, Not Equals
+	template<class T>
+	bool operator==(Vector4<T> const& vec1, Vector4<T> const& vec2)
+	{
+		return vec1.x() == vec2.x() && vec1.y() == vec2.y() && vec1.z() == vec2.z() && vec1.w() == vec2.w();
+	}
+	template<class T>
+	bool operator!=(Vector4<T> const& vec1, Vector4<T> const& vec2)
+	{
+		return !(vec1 == vec2);
+	}
+
+	//Addition, Subtraction
+	template<class T>
+	Vector4<T> operator+(Vector4<T> const& vec1, Vector4<T> const& vec2)
+	{
+		return Vector4<T>(vec1.x() + vec2.x(), vec1.y() + vec2.y(), vec1.z() + vec2.z(), vec1.w() + vec2.w());
+	}
+	template<class T>
+	Vector4<T> operator-(Vector4<T> const& vec1, Vector4<T> const& vec2)
+	{
+		return Vector4<T>(vec1.x() - vec2.x(), vec1.y() - vec2.y(), vec1.z() - vec2.z(), vec1.w() + vec2.w());
+	}
+
+	//Multiplication, Division
+	template<class T>
+	Vector4<T> operator*(Vector4<T> const& vec1, T scaler)
+	{
+		return Vector4<T>(vec1.x() * scaler, vec1.y() * scaler, vec1.z() * scaler, vec1.w() * scaler);
+	}
+	template<class T>
+	Vector4<T> operator*(T scaler, Vector4<T> const& vec2)
+	{
+		return vec2 * scaler;
+	}
+	template<class T>
+	Vector4<T> operator/(Vector4<T> const& vec1, T scaler)
+	{
+		if (0 == scaler)
+			scaler = 1;
+		return Vector4<T>(vec1.x() / scaler, vec1.y() / scaler, vec1.z() / scaler, vec1.w() / scaler);
 	}
 }
 

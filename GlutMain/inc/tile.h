@@ -18,8 +18,6 @@ namespace GAME3011_Assignment1
 
 		bool getVisible() const { return m_visible; }
 		void setVisible(bool visible) { m_visible = visible; }
-		
-		void draw();
 
 	protected:
 	};
