@@ -1,9 +1,6 @@
-﻿Build started 31/01/2015 2:40:07 PM.
+﻿Build started 31/01/2015 4:19:36 PM.
      1>Project "C:\Users\Brian\Documents\GitHub\GameEngine\GameEngine\GameEngine.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\gameEngine.cpp
-         gameEngine.cpp
-       Lib:
+     1>Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\Brian\Documents\GitHub\GameEngine\Debug\GameEngine.lib" EngineCore.lib SystemGraphicsGlut.lib SystemInputGlut.lib /NOLOGO Debug\gameEngine.obj
          Debug\transform.obj
      1>SystemGraphicsGlut.lib(systemManager.obj) : warning LNK4006: "public: __thiscall GameEngine::SystemManager::SystemManager(void)" (??0SystemManager@GameEngine@@QAE@XZ) already defined in EngineCore.lib(systemManager.obj); second definition ignored
@@ -65,4 +62,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.49
+Time Elapsed 00:00:00.14

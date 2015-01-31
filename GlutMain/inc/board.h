@@ -42,7 +42,8 @@ namespace GAME3011_Assignment1
 		float m_halfTileHeight;
 		float m_tileSpacing;
 
-		static const int VALUE_MAX;
+		int m_maxValue;
+
 
 		static const float * COLOUR_HIDDEN;
 		static const float * COLOUR_MIN;
@@ -75,17 +76,29 @@ namespace GAME3011_Assignment1
 		\*******************/
 	public:
 		//Getters and Setters
+		int getMaxValue() const { return m_maxValue; }
+		void setMaxValue(int maxValue) { m_maxValue = maxValue; }
+
 		int getValue(int col, int row) const;
-		void setvalue(int col, int row, int value);
+		int getValue(int index) const;
+		void setValue(int col, int row, int value);
+		void setValue(int index, int value);
+
+
+		bool getVisible(int col, int row) const;
+		void setVisible(int col, int row, bool visible);
 
 		bool inBounds(int col, int row) const { return col >= 0 && col < m_numCol && row >= 0 && row < m_numRow; }
 		bool inBounds(int index) const { return index >= 0 && index < m_numCol * m_numRow; }
 		
 		//Calcuating Adjacent indexes
-		int * getAjacentIndexes(int index) const;
-		int getAjacentIndex(eAdjacentDirection direction, int index) const;
+		int * getAjacentIndexes(int col, int row) const;
+		int getAjacentIndex(eAdjacentDirection direction, int col, int row) const;
 
 		bool getColRow(float x, float y, int & col, int & row) const;
+
+		void addResources(int index, int amount);
+
 		
 	private:
 		//Converstions between col, row and index

@@ -27,6 +27,12 @@ namespace GAME3011_Assignment1
 		void mouse(int button, int state, int x, int y);
 
 	private:
+		void generateResources(int minNodes, int maxNodes, int amount);
+
+	private:
+		static const int BOARDWIDTH;
+		static const int BOARDHEIGHT;
+
 		static MiningGame * s_instance;
 		Board * m_board;
 

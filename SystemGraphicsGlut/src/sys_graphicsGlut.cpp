@@ -22,7 +22,7 @@ m_cameraWidth(DEFAULT_CAMERAWIDTH),
 m_cameraHeight(DEFAULT_CAMERAHEIGHT)
 
 {
-	m_cameraPos = new float[3]{ 0.0f, 0.0f, -5.0f };
+	m_cameraPos = new float[3]{ 0.0f, 0.0f, 5.0f };
 	m_cameraTarget = new float[3]{ 0.0f, 0.0f, 0.0f };
 }
 
@@ -91,3 +91,8 @@ void Sys_Graphics::screenToWorld(int screenX, int screenY, float depthZ, float &
 	worldY = (1.0f - (2.0f * screenY) / m_screenHeight) * m_cameraHeight;
 }
 
+
+void Sys_Graphics::displayText(std::string)
+{
+
+}

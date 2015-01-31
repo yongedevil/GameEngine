@@ -1,18 +1,17 @@
 #include "board.h"
 #include "tile.h"
 
-#include <GL\glut.h>
+#include <GL\freeglut.h>
+
+#include <cmath>
 
 using namespace GAME3011_Assignment1;
 
-
-const int Board::VALUE_MAX = 1000;
-
-const float * Board::COLOUR_HIDDEN = new float[4]{ 1.0f, 0.0f, 0.0f, 1.0f };
-const float * Board::COLOUR_MIN = new float[4]{ 1.0f, 1.0f, 1.0f, 1.0f };
-const float * Board::COLOUR_QUARTER = new float[4]{ 1.0f, 1.0f, 0.0f, 1.0f };
-const float * Board::COLOUR_HALF = new float[4]{ 1.0f, 0.75f, 0.0f, 1.0f };
-const float * Board::COLOUR_MAX = new float[4]{ 1.0f, 0.5f, 0.0f, 1.0f };
+const float * Board::COLOUR_HIDDEN =	new float[4]{ 1.00f, 1.00f, 1.00f, 1.0f };
+const float * Board::COLOUR_MIN =		new float[4]{ 0.50f, 0.50f, 0.50f, 1.0f };
+const float * Board::COLOUR_QUARTER =	new float[4]{ 1.00f, 1.00f, 0.00f, 1.0f };
+const float * Board::COLOUR_HALF =		new float[4]{ 1.00f, 0.50f, 0.00f, 1.0f };
+const float * Board::COLOUR_MAX =		new float[4]{ 1.00f, 0.00f, 0.00f, 1.0f };
 
 /********************************************************************************\
  * Board class, Constructor														*
@@ -87,6 +86,8 @@ void Board::draw()
 		{
 			colour = getColour(m_board[i].getValue());
 		}
+		else
+			colour = COLOUR_HIDDEN;
 
 		glPushMatrix();
 		{
@@ -96,9 +97,9 @@ void Board::draw()
 			glBegin(GL_QUADS);
 			{
 				glVertex2f(-m_halfTileWidth, -m_halfTileHeight);
-				glVertex2f( m_halfTileWidth, -m_halfTileHeight);
-				glVertex2f( m_halfTileWidth,  m_halfTileHeight);
-				glVertex2f(-m_halfTileWidth,  m_halfTileHeight);
+				glVertex2f(m_halfTileWidth, -m_halfTileHeight);
+				glVertex2f(m_halfTileWidth, m_halfTileHeight);
+				glVertex2f(-m_halfTileWidth, m_halfTileHeight);
 			}
 			glEnd();
 		}
@@ -117,14 +118,16 @@ void Board::draw()
  *   the value of the cell at (x, y) if successful.								*
  *   -1 if (x, y) is out of bounds.												*
 \********************************************************************************/
-int Board::getValue(int col, int row) const
+int Board::getValue(int index) const
 {
-	int index = getIndex(col, row);
-	
-	if(!inBounds(index))
+	if (!inBounds(index))
 		return -1;
 
 	return m_board[index].getValue();
+}
+int Board::getValue(int col, int row) const
+{
+	return getValue(getIndex(col, row));
 }
 
 /********************************************************************************\
@@ -136,14 +139,35 @@ int Board::getValue(int col, int row) const
  *   col: the colunm corrdinate.												*
  *   value: the value to set the cell at (x, y) to.								*
 \********************************************************************************/
-void Board::setvalue(int col, int row, int value)
+void Board::setValue(int index, int value)
+{
+	if (!inBounds(index))
+		return;
+
+	m_board[index].setValue(value);
+}
+void Board::setValue(int col, int row, int value)
+{
+	setValue(getIndex(col, row), value);
+}
+
+bool Board::getVisible(int col, int row) const
 {
 	int index = getIndex(col, row);
 
-	if(!inBounds(index))
+	if (!inBounds(index))
+		return -1;
+
+	return m_board[index].getVisible();
+}
+void Board::setVisible(int col, int row, bool visible)
+{
+	int index = getIndex(col, row);
+
+	if (!inBounds(index))
 		return;
-	
-	m_board[index].setValue(value);
+
+	m_board[index].setVisible(visible);
 }
 
 /********************************************************************************\
@@ -194,21 +218,22 @@ int Board::getColRow(int index, int &col, int &row) const
  * are set to -1.																*
  *																				*
  * Paramaters:																	*
- *   index: the index to get adjacent indexes for.								*
+ *   col: the colunm corrdinate.												*
+ *   row: the row corrdinate.													*
  * Returns:																		*
- *   Array of 8 adjacent indexes.  Any adjacent cells out of bounds are set to	*
- *	   -1.																		*
+ *   array of 8 indexes adjacent to index.  positions out of bounds are set to	*
+ *		-1.																		*
 \********************************************************************************/
-int * Board::getAjacentIndexes(int index) const
+int * Board::getAjacentIndexes(int col, int row) const
 {
-	int * adjacent = new int[8];
+	int * adjacentIndexes = new int[8];
 
-	for(int i = 0; i < 8; i++)
+	for(int i = 0; i < 8; ++i)
 	{
-		adjacent[i] = getAjacentIndex(static_cast<eAdjacentDirection>(i), index);
+		adjacentIndexes[i] = getAjacentIndex(static_cast<eAdjacentDirection>(i), col, row);
 	}
-
-	return adjacent;
+	
+	return adjacentIndexes;
 }
 
 /********************************************************************************\
@@ -217,17 +242,15 @@ int * Board::getAjacentIndexes(int index) const
  *																				*
  * Paramaters:																	*
  *   direction: the direction to get the adjacent index for.					*
- *   index: the index to get the adjacent index for								*
+ *   col: the colunm corrdinate.												*
+ *   row: the row corrdinate.													*
  * Returns:																		*
  *   adjacent index if successful.												*
  *   -1 if the adjacent index is out of bounds.									*
 \********************************************************************************/
-int Board::getAjacentIndex(eAdjacentDirection direction, int index) const
+int Board::getAjacentIndex(eAdjacentDirection direction, int col, int row) const
 {
 	int adjacentIndex = -1;
-	int col, row;
-
-	getColRow(index, col, row);
 
 	switch(direction)
 	{
@@ -277,9 +300,6 @@ bool Board::getColRow(float x, float y, int & col, int & row) const
 	float tileWidth = (m_numCol * m_halfTileWidth * 2 + (m_numCol - 1) * m_tileSpacing) / m_numCol;
 	float tileHeight = (m_numRow * m_halfTileHeight * 2 + (m_numRow - 1) * m_tileSpacing) / m_numRow;
 
-	//(col - halfX) * tileWidth
-	//(row - halfY) * tileHeight
-
 	for (int i = 0; !found && i < m_numCol; ++i)
 	{
 		if (isInCol(i, x))
@@ -301,10 +321,20 @@ bool Board::getColRow(float x, float y, int & col, int & row) const
 
 float const* Board::getColour(int value) const
 {
-	if (value >= VALUE_MAX)
+	if (value >= m_maxValue)
 	{
 		return COLOUR_MAX;
 	}
+	else if (value >= m_maxValue / 2)
+	{
+		return COLOUR_HALF;
+	}
+	else if (value >= m_maxValue / 4)
+	{
+		return COLOUR_QUARTER;
+	}
+	else
+		return COLOUR_MIN;
 }
 
 bool Board::isInCol(int col, float x) const
@@ -323,4 +353,38 @@ bool Board::isInRow(int row, float y) const
 	rowCentre = (row - (m_numRow - 1) / 2.0f) * (m_numRow * m_halfTileHeight * 2 + (m_numRow - 1) * m_tileSpacing) / m_numRow;
 
 	return (y > rowCentre - m_halfTileHeight && y < rowCentre + m_halfTileHeight);
+}
+
+void Board::addResources(int index, int amount)
+{
+	if (!inBounds(index))
+		return;
+
+	int col = 0;
+	int row = 0;
+	int pow;
+	int amountToAdd;
+
+	getColRow(index, col, row);
+
+	for (int i = -2; i < 3; ++i)
+	{
+		for (int j = -2; j < 3; ++j)
+		{
+			index = getIndex(col + i, row + j);
+
+			if (inBounds(index))
+			{
+				if (std::abs(i) > std::abs(j))
+					pow = std::abs(i);
+				else
+					pow = std::abs(j);
+
+				amountToAdd = amount / std::pow(2, pow);
+
+				if (getValue(index) < amountToAdd)
+					setValue(index, amountToAdd);
+			}
+		}
+	}
 }

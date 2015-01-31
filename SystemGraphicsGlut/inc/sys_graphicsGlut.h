@@ -1,6 +1,7 @@
 #ifndef _SYS_GRAPHICS_H
 #define _SYS_GRAPHICS_H
 
+#include <string>
 
 #include "system.h"
 
@@ -30,6 +31,8 @@ namespace GameEngine
 
 
 		void screenToWorld(int screenX, int screenY, float depthZ, float & worldX, float & worldY) const;
+
+		void displayText(std::string);
 
 	protected:
 		void update(float dt);
