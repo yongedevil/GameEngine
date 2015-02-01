@@ -98,6 +98,7 @@ namespace GAME3011_Assignment1
 		bool getColRow(float x, float y, int & col, int & row) const;
 
 		void addResources(int index, int amount);
+		int mineResources(int col, int row);
 
 		
 	private:

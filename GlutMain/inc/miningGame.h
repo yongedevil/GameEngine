@@ -5,6 +5,11 @@
 
 #include "gameEngine.h"
 
+namespace GameEngine
+{
+	class StateMachine;
+}
+
 namespace GAME3011_Assignment1
 {
 	class Board;
@@ -34,9 +39,9 @@ namespace GAME3011_Assignment1
 		static const int BOARDHEIGHT;
 
 		static MiningGame * s_instance;
-		Board * m_board;
 
-		GameEngine::Engine * m_engne;
+		Board * m_board;
+		GameEngine::StateMachine * m_stateMachine;
 	};
 }
 

@@ -388,3 +388,24 @@ void Board::addResources(int index, int amount)
 		}
 	}
 }
+
+int Board::mineResources(int col, int row)
+{
+	int amount;
+
+
+	amount = getValue(col, row);
+	setValue(col, row, 0);
+
+	m_board[3];
+
+	for (int i = -1; i < 2; ++i)
+	{
+		for (int j = -1; j < 2; ++j)
+		{
+			setValue(col + i, row + j, getValue(col + i, row + j) / 2);
+		}
+	}
+
+	return amount;
+}

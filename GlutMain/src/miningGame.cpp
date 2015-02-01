@@ -5,6 +5,8 @@
 
 #include "board.h"
 #include "entity.h"
+#include "stateMachine.h"
+#include "gameStates.h"
 
 using namespace GAME3011_Assignment1;
 
@@ -13,7 +15,10 @@ const int MiningGame::BOARDHEIGHT = 16;
 
 MiningGame * MiningGame::s_instance = NULL;
 
-MiningGame::MiningGame() : GameEngine::Engine(), m_board(NULL)
+MiningGame::MiningGame() :
+GameEngine::Engine(),
+m_board(NULL),
+m_stateMachine(NULL)
 {
 }
 
@@ -46,6 +51,19 @@ void MiningGame::startup()
 
 	//add resources to the board
 	generateResources(6, 8, 1000);
+
+	//setup state machine
+	GameState_Scan * stateScan = new GameState_Scan();
+	GameState_Mine * stateMine = new GameState_Mine();
+
+	GameStates::gamestate_scan = stateScan;
+	GameStates::gamestate_mine = stateMine;
+
+	stateScan->init();
+	stateMine->init();
+
+	m_stateMachine = new GameEngine::StateMachine();
+	m_stateMachine->start(GameStates::gamestate_scan);
 }
 
 void MiningGame::shutdown()
@@ -62,6 +80,17 @@ void MiningGame::update()
 void MiningGame::keyboard(unsigned char key, int state, int x, int y)
 {
 	GameEngine::Engine::keyboard(key, state, x, y);
+
+	switch (key)
+	{
+	case ' ':
+		if (0 == state)
+		{
+			GameState * gamestate = dynamic_cast<GameState*>(m_stateMachine->getState());
+			m_stateMachine->changeState(gamestate->getNext());
+		}
+		break;
+	}
 }
 void MiningGame::mouse(int button, int state, int x, int y)
 {
@@ -72,18 +101,16 @@ void MiningGame::mouse(int button, int state, int x, int y)
 	float worldX = 0;
 	float worldY = 0;
 
-	GameEngine::Engine::screenToWorld(x, y, 0, worldX, worldY);
-
-	if (m_board->getColRow(worldX, worldY, col, row))
+	if (0 == state)
 	{
-		for (int i = -1; i < 2; ++i)
-		{
-			for (int j = -1; j < 2; ++j)
-			{
-				m_board->setVisible(col + i, row + j, true);
-			}
-		}
+		GameState * gamestate = dynamic_cast<GameState *>(m_stateMachine->getState());
 
+		//convert from screen to world and then to board
+		GameEngine::Engine::screenToWorld(x, y, 0, worldX, worldY);
+		if (m_board->getColRow(worldX, worldY, col, row))
+		{
+			gamestate->clickAction(m_board, col, row);
+		}
 	}
 }
 

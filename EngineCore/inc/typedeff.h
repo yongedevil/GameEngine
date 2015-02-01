@@ -6,6 +6,8 @@ namespace GameEngine
 	typedef unsigned long EntityID;
 	typedef long ComponentID;
 
+	typedef unsigned int StateID;
+
 	enum class ComponentType : short
 	{
 		COMPONENT_BASE,

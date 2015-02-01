@@ -12,10 +12,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\gameEngine.h" />
+    <ClInclude Include="inc\state.h" />
+    <ClInclude Include="inc\stateMachine.h" />
     <ClInclude Include="inc\transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gameEngine.cpp" />
+    <ClCompile Include="src\state.cpp" />
+    <ClCompile Include="src\stateMachine.cpp" />
     <ClCompile Include="src\transform.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

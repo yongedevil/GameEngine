@@ -75,11 +75,13 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\board.cpp" />
+    <ClCompile Include="src\gameStates.cpp" />
     <ClCompile Include="src\miningGame.cpp" />
     <ClCompile Include="src\tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\board.h" />
+    <ClInclude Include="inc\gameStates.h" />
     <ClInclude Include="inc\miningGame.h" />
     <ClInclude Include="inc\tile.h" />
     <ClInclude Include="inc\typedeff_miningGame.h" />
