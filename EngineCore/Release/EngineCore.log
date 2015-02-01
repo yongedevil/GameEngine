@@ -1,0 +1,21 @@
+﻿Build started 01/02/2015 10:45:08 AM.
+     1>Project "C:\Users\Brian\Documents\GitHub\GameEngine\EngineCore\EngineCore.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\Brian\Documents\GitHub\GameEngine\inc /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\component.cpp src\entity.cpp src\entityManager.cpp src\system.cpp src\systemManager.cpp
+         component.cpp
+         entity.cpp
+         entityManager.cpp
+         system.cpp
+         systemManager.cpp
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\Brian\Documents\GitHub\GameEngine\Release\EngineCore.lib" /NOLOGO /LTCG Release\component.obj
+         Release\entity.obj
+         Release\entityManager.obj
+         Release\system.obj
+         Release\systemManager.obj
+         EngineCore.vcxproj -> C:\Users\Brian\Documents\GitHub\GameEngine\Release\EngineCore.lib
+     1>Done Building Project "C:\Users\Brian\Documents\GitHub\GameEngine\EngineCore\EngineCore.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.28

@@ -41,10 +41,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(ProjectDir)inc;$(SolutionDir)Glut\inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)GameEngine\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Debug;$(SolutionDir)Glut\lib;$(LibraryPath)</LibraryPath>
+    <TargetName>GAME3011_A1_IcelyBrian_Debug</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(ProjectDir)inc;$(SolutionDir)Glut\inc;$(SolutionDir)EngineCore\inc;$(SolutionDir)GameEngine\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Release;$(SolutionDir)Glut\lib;$(LibraryPath)</LibraryPath>
+    <TargetName>GAME3011_A1_IcelyBrian</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -76,12 +78,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\board.cpp" />
     <ClCompile Include="src\gameStates.cpp" />
+    <ClCompile Include="src\hud.cpp" />
     <ClCompile Include="src\miningGame.cpp" />
     <ClCompile Include="src\tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\board.h" />
     <ClInclude Include="inc\gameStates.h" />
+    <ClInclude Include="inc\hud.h" />
     <ClInclude Include="inc\miningGame.h" />
     <ClInclude Include="inc\tile.h" />
     <ClInclude Include="inc\typedeff_miningGame.h" />

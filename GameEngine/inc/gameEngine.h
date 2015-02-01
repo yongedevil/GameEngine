@@ -24,10 +24,10 @@ namespace GameEngine
 	public:
 		static Engine * instance();
 
-		void startup();
-		void shutdown();
-		void update();
-		void draw();
+		virtual void startup();
+		virtual void shutdown();
+		virtual void update();
+		virtual void draw();
 
 		void reshape(int width, int height);
 		virtual void keyboard(unsigned char key, int state, int x, int y);

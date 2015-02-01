@@ -7,7 +7,8 @@ namespace GAME3011_Assignment1
 {
 	enum class ComponentType : short
 	{
-		COMPONENT_BOARD = static_cast<short>(GameEngine::ComponentType::COMPONENT_USERDEFINED)
+		COMPONENT_BOARD = static_cast<short>(GameEngine::ComponentType::COMPONENT_USERDEFINED),
+		COMPONENT_HUD
 	};
 }
 

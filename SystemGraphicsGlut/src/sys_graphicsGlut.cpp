@@ -1,6 +1,6 @@
 
 #include <cstdlib>
-#include <GL\glut.h>
+#include <GL\freeglut.h>
 
 #include "sys_graphicsGlut.h"
 #include "entityManager.h"
@@ -89,10 +89,4 @@ void Sys_Graphics::screenToWorld(int screenX, int screenY, float depthZ, float &
 {
 	worldX = ((2.0f * screenX) / m_screenWidth - 1.0f) * m_cameraWidth;
 	worldY = (1.0f - (2.0f * screenY) / m_screenHeight) * m_cameraHeight;
-}
-
-
-void Sys_Graphics::displayText(std::string)
-{
-
 }

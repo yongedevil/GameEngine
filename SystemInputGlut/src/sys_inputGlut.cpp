@@ -1,5 +1,5 @@
 #include <cstdlib>
-#include <GL\glut.h>
+#include <GL\freeglut.h>
 
 #include "sys_inputGlut.h"
 

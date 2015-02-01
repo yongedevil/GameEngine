@@ -4,6 +4,7 @@
 #include <ctime>
 
 #include "board.h"
+#include "hud.h"
 #include "entity.h"
 #include "stateMachine.h"
 #include "gameStates.h"
@@ -18,6 +19,7 @@ MiningGame * MiningGame::s_instance = NULL;
 MiningGame::MiningGame() :
 GameEngine::Engine(),
 m_board(NULL),
+m_hud(NULL),
 m_stateMachine(NULL)
 {
 }
@@ -48,6 +50,7 @@ void MiningGame::startup()
 
 	m_board = boardEnt->addComponent<Board>();
 	m_board->init(BOARDWIDTH, BOARDHEIGHT);
+	m_board->setActive(true);
 
 	//add resources to the board
 	generateResources(6, 8, 1000);
@@ -55,15 +58,27 @@ void MiningGame::startup()
 	//setup state machine
 	GameState_Scan * stateScan = new GameState_Scan();
 	GameState_Mine * stateMine = new GameState_Mine();
+	GameState_End * stateEnd = new GameState_End();
 
 	GameStates::gamestate_scan = stateScan;
 	GameStates::gamestate_mine = stateMine;
+	GameStates::gamestate_end = stateEnd;
 
 	stateScan->init();
 	stateMine->init();
+	stateEnd->init();
 
 	m_stateMachine = new GameEngine::StateMachine();
 	m_stateMachine->start(GameStates::gamestate_scan);
+
+	//setup HUD
+	GameEngine::Entity * hudEnt = GameEngine::Engine::createEntity<GameEngine::Entity>();
+
+	m_hud = hudEnt->addComponent<HUD>();
+	m_hud->init();
+	m_hud->setScanCount(dynamic_cast<GameState*>(GameStates::gamestate_scan)->getActionsLeft());
+	m_hud->setMineCount(dynamic_cast<GameState*>(GameStates::gamestate_mine)->getActionsLeft());
+	m_hud->setMode(m_stateMachine->getState());
 }
 
 void MiningGame::shutdown()
@@ -74,6 +89,21 @@ void MiningGame::shutdown()
 void MiningGame::update()
 {
 	GameEngine::Engine::update();
+	
+	m_hud->setScore(dynamic_cast<GameState_Mine*>(GameStates::gamestate_mine)->getAmountCollected());
+	m_hud->setScanCount(dynamic_cast<GameState*>(GameStates::gamestate_scan)->getActionsLeft());
+	m_hud->setMineCount(dynamic_cast<GameState*>(GameStates::gamestate_mine)->getActionsLeft());
+	m_hud->setMode(m_stateMachine->getState());
+
+
+	if (m_stateMachine->getState() == GameStates::gamestate_end)
+	{
+		m_board->setGameOver(true);
+	}
+	else if (dynamic_cast<GameState*>(GameStates::gamestate_mine)->getActionsLeft() <= 0)
+	{
+		m_stateMachine->changeState(GameStates::gamestate_end);
+	}
 }
 
 

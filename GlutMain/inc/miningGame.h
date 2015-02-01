@@ -13,6 +13,7 @@ namespace GameEngine
 namespace GAME3011_Assignment1
 {
 	class Board;
+	class HUD;
 
 	class MiningGame : public GameEngine::Engine
 	{
@@ -41,6 +42,7 @@ namespace GAME3011_Assignment1
 		static MiningGame * s_instance;
 
 		Board * m_board;
+		HUD * m_hud;
 		GameEngine::StateMachine * m_stateMachine;
 	};
 }

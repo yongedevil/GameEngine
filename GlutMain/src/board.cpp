@@ -7,11 +7,11 @@
 
 using namespace GAME3011_Assignment1;
 
-const float * Board::COLOUR_HIDDEN =	new float[4]{ 1.00f, 1.00f, 1.00f, 1.0f };
-const float * Board::COLOUR_MIN =		new float[4]{ 0.50f, 0.50f, 0.50f, 1.0f };
-const float * Board::COLOUR_QUARTER =	new float[4]{ 1.00f, 1.00f, 0.00f, 1.0f };
-const float * Board::COLOUR_HALF =		new float[4]{ 1.00f, 0.50f, 0.00f, 1.0f };
-const float * Board::COLOUR_MAX =		new float[4]{ 1.00f, 0.00f, 0.00f, 1.0f };
+float * Board::COLOUR_HIDDEN =	new float[4]{ 1.00f, 1.00f, 1.00f, 1.0f };
+float * Board::COLOUR_MIN =		new float[4]{ 0.50f, 0.50f, 0.50f, 1.0f };
+float * Board::COLOUR_QUARTER =	new float[4]{ 1.00f, 1.00f, 0.00f, 1.0f };
+float * Board::COLOUR_HALF =	new float[4]{ 1.00f, 0.50f, 0.00f, 1.0f };
+float * Board::COLOUR_MAX =		new float[4]{ 1.00f, 0.00f, 0.00f, 1.0f };
 
 /********************************************************************************\
  * Board class, Constructor														*
@@ -23,7 +23,10 @@ m_numCol(0),
 m_numRow(0),
 m_halfTileWidth(0.2f),
 m_halfTileHeight(0.2f),
-m_tileSpacing(0.1f)
+m_tileSpacing(0.1f),
+m_boardOffsetWidth(0.0f),
+m_boardOffsetHeight(-0.25f),
+m_gameOver(false)
 {
 }
 
@@ -43,7 +46,7 @@ Board::~Board()
 \********************************************************************************/
 void Board::init(int col, int row)
 {
-	GameEngine::Component::init();
+	Component::init();
 
 	m_numCol = col;
 	m_numRow = row;
@@ -60,6 +63,7 @@ void Board::init(int col, int row)
 
 void Board::destroy()
 {
+
 }
 
 void Board::update(float dt)
@@ -78,11 +82,14 @@ void Board::draw()
 	float tileWidth = (m_numCol * m_halfTileWidth*2 + (m_numCol - 1) * m_tileSpacing) / m_numCol;
 	float tileHeight = (m_numRow * m_halfTileHeight*2 + (m_numRow - 1) * m_tileSpacing) / m_numRow;
 
+	glPushMatrix();
+	glTranslatef(m_boardOffsetWidth, m_boardOffsetHeight, 0.0f);
+
 	for (int i = 0; i < m_numCol * m_numRow; ++i)
 	{
 		getColRow(i, col, row);
 
-		if (m_board[i].getVisible())
+		if (m_board[i].getVisible() || m_gameOver)
 		{
 			colour = getColour(m_board[i].getValue());
 		}
@@ -105,6 +112,47 @@ void Board::draw()
 		}
 		glPopMatrix();
 	}
+
+	glPopMatrix();
+}
+
+
+void Board::setGameOver(bool gameOver)
+{
+	m_gameOver = gameOver;
+
+	if (m_gameOver)
+	{
+		//reassgin colours
+		delete COLOUR_HIDDEN;
+		delete COLOUR_MIN;
+		delete COLOUR_QUARTER;
+		delete COLOUR_HALF;
+		delete COLOUR_MAX;
+		
+		COLOUR_HIDDEN =		new float[4]{ 1.00f, 1.00f, 1.00f, 1.0f };
+		COLOUR_MIN =		new float[4]{ 0.25f, 0.25f, 0.25f, 1.0f };
+		COLOUR_QUARTER =	new float[4]{ 0.50f, 0.50f, 0.00f, 1.0f };
+		COLOUR_HALF =		new float[4]{ 0.50f, 0.25f, 0.00f, 1.0f };
+		COLOUR_MAX =		new float[4]{ 0.50f, 0.00f, 0.00f, 1.0f };
+	}
+
+	else
+	{
+		//reassgin colours
+		delete COLOUR_HIDDEN;
+		delete COLOUR_MIN;
+		delete COLOUR_QUARTER;
+		delete COLOUR_HALF;
+		delete COLOUR_MAX;
+
+		COLOUR_HIDDEN = new float[4]{ 1.00f, 1.00f, 1.00f, 1.0f };
+		COLOUR_MIN = new float[4]{ 0.50f, 0.50f, 0.50f, 1.0f };
+		COLOUR_QUARTER = new float[4]{ 1.00f, 1.00f, 0.00f, 1.0f };
+		COLOUR_HALF = new float[4]{ 1.00f, 0.50f, 0.00f, 1.0f };
+		COLOUR_MAX = new float[4]{ 1.00f, 0.00f, 0.00f, 1.0f };
+	}
+
 }
 
 /********************************************************************************\
@@ -168,6 +216,14 @@ void Board::setVisible(int col, int row, bool visible)
 		return;
 
 	m_board[index].setVisible(visible);
+}
+
+void Board::setAllVisible(bool visible)
+{
+	for (int i = 0; i < m_numCol * m_numRow; ++i)
+	{
+		m_board[i].setVisible(visible);
+	}
 }
 
 /********************************************************************************\
@@ -341,7 +397,7 @@ bool Board::isInCol(int col, float x) const
 {
 	float colCentre;
 
-	colCentre = (col - (m_numCol - 1) / 2.0f) * (m_numCol * m_halfTileWidth * 2 + (m_numCol - 1) * m_tileSpacing) / m_numCol;
+	colCentre = ((col - (m_numCol - 1) / 2.0f) * (m_numCol * m_halfTileWidth * 2 + (m_numCol - 1) * m_tileSpacing) / m_numCol) + m_boardOffsetWidth;
 
 	return (x > colCentre - m_halfTileWidth && x < colCentre + m_halfTileWidth);
 }
@@ -350,7 +406,7 @@ bool Board::isInRow(int row, float y) const
 {
 	float rowCentre;
 
-	rowCentre = (row - (m_numRow - 1) / 2.0f) * (m_numRow * m_halfTileHeight * 2 + (m_numRow - 1) * m_tileSpacing) / m_numRow;
+	rowCentre = ((row - (m_numRow - 1) / 2.0f) * (m_numRow * m_halfTileHeight * 2 + (m_numRow - 1) * m_tileSpacing) / m_numRow) + m_boardOffsetHeight;
 
 	return (y > rowCentre - m_halfTileHeight && y < rowCentre + m_halfTileHeight);
 }
@@ -399,9 +455,9 @@ int Board::mineResources(int col, int row)
 
 	m_board[3];
 
-	for (int i = -1; i < 2; ++i)
+	for (int i = -2; i < 3; ++i)
 	{
-		for (int j = -1; j < 2; ++j)
+		for (int j = -2; j < 3; ++j)
 		{
 			setValue(col + i, row + j, getValue(col + i, row + j) / 2);
 		}

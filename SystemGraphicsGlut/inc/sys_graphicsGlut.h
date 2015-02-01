@@ -32,8 +32,6 @@ namespace GameEngine
 
 		void screenToWorld(int screenX, int screenY, float depthZ, float & worldX, float & worldY) const;
 
-		void displayText(std::string);
-
 	protected:
 		void update(float dt);
 		

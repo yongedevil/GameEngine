@@ -10,13 +10,15 @@ namespace GAME3011_Assignment1
 	enum class StateType
 	{
 		STATE_SCAN = static_cast<int>(GameEngine::State::StateType::STATE_USERDEFINED),
-		STATE_MINE
+		STATE_MINE,
+		STATE_END
 	};
 
 	struct GameStates
 	{
 		static GameEngine::State * gamestate_scan;
 		static GameEngine::State * gamestate_mine;
+		static GameEngine::State * gamestate_end;
 	};
 
 	class GameState : public GameEngine::State
@@ -29,6 +31,7 @@ namespace GAME3011_Assignment1
 
 		virtual void clickAction(Board * board, int col, int row) = 0;
 		virtual State * getNext();
+		virtual int getActionsLeft() const { return m_actionsLeft; }
 
 	protected:
 		State * m_next;
@@ -68,6 +71,20 @@ namespace GAME3011_Assignment1
 
 	private:
 		int m_amountCollected;
+	};
+
+	class GameState_End : public GameState
+	{
+	public:
+		GameState_End();
+		virtual ~GameState_End();
+
+		virtual void init();
+		virtual void enter();
+		virtual void exit();
+
+		virtual void clickAction(Board * board, int col, int row);
+		virtual StateType getType() const { return static_cast<GameEngine::State::StateType>(GAME3011_Assignment1::StateType::STATE_END); }
 	};
 }
 

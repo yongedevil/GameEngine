@@ -1,5 +1,4 @@
-#include <cstdlib>
-#include <GL\glut.h>
+#include <GL\freeglut.h>
 
 #include "miningGame.h"
 

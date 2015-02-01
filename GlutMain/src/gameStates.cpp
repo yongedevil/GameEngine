@@ -7,6 +7,7 @@ using namespace GAME3011_Assignment1;
 
 GameEngine::State * GameStates::gamestate_scan = NULL;
 GameEngine::State * GameStates::gamestate_mine = NULL;
+GameEngine::State * GameStates::gamestate_end = NULL;
 
 GameState::GameState() : m_next(NULL)
 {
@@ -43,6 +44,7 @@ void GameState_Scan::init()
 	std::vector<State *> validStates;
 
 	validStates.push_back(GameStates::gamestate_mine);
+	validStates.push_back(GameStates::gamestate_end);
 	State::init(validStates);
 	GameState::init(GameStates::gamestate_mine);
 }
@@ -93,6 +95,7 @@ void GameState_Mine::init()
 	std::vector<State *> validStates;
 
 	validStates.push_back(GameStates::gamestate_scan);
+	validStates.push_back(GameStates::gamestate_end);
 	State::init(validStates);
 	GameState::init(GameStates::gamestate_scan);
 }
@@ -116,3 +119,34 @@ void GameState_Mine::clickAction(Board * board, int col, int row)
 	}
 }
 
+
+GameState_End::GameState_End()
+{
+}
+
+GameState_End::~GameState_End()
+{
+
+}
+
+void GameState_End::init()
+{
+	std::vector<State *> validStates;
+
+	State::init(validStates);
+	GameState::init(NULL);
+}
+
+void GameState_End::enter()
+{
+
+}
+
+void GameState_End::exit()
+{
+
+}
+
+void GameState_End::clickAction(Board * board, int col, int row)
+{
+}
