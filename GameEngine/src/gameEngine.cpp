@@ -91,8 +91,7 @@ void Engine::draw()
 	{
 		m_graphics->displayStart();
 		m_graphics->display(m_entManager);
-		m_graphics->displayEnd();
-		
+		m_graphics->displayEnd();		
 	}
 }
 
