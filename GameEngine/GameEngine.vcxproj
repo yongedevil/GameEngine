@@ -11,10 +11,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\gameEngine.h" />
+    <ClInclude Include="inc\button.h" />
+    <ClInclude Include="inc\comp_transform.h" />
+    <ClInclude Include="inc\engine.h" />
+    <ClInclude Include="inc\sprite.h" />
+    <ClInclude Include="inc\state.h" />
+    <ClInclude Include="inc\stateMachine.h" />
+    <ClInclude Include="inc\typedeffex.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\gameEngine.cpp" />
+    <ClCompile Include="src\button.cpp" />
+    <ClCompile Include="src\comp_transform.cpp" />
+    <ClCompile Include="src\engine.cpp" />
+    <ClCompile Include="src\sprite.cpp" />
+    <ClCompile Include="src\state.cpp" />
+    <ClCompile Include="src\stateMachine.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D000A4E1-F2EA-463B-85CE-D49A5A8355F5}</ProjectGuid>

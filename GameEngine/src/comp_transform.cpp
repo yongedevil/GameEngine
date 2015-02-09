@@ -26,6 +26,7 @@ void Transform::destroy()
 	Component::destroy();
 }
 
+
 void Transform::translate(Vector3f translation)
 {
 	m_pos += translation;

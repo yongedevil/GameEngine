@@ -74,20 +74,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\component.cpp" />
-    <ClCompile Include="src\comp_transform.cpp" />
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\entityManager.cpp" />
+    <ClCompile Include="src\rectangle.cpp" />
     <ClCompile Include="src\system.cpp" />
     <ClCompile Include="src\systemManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\component.h" />
-    <ClInclude Include="inc\comp_transform.h" />
     <ClInclude Include="inc\entity.h" />
     <ClInclude Include="inc\entityManager.h" />
     <ClInclude Include="inc\manager.h" />
     <ClInclude Include="inc\message.h" />
     <ClInclude Include="inc\quaternion.h" />
+    <ClInclude Include="inc\rectangle.h" />
     <ClInclude Include="inc\system.h" />
     <ClInclude Include="inc\systemManager.h" />
     <ClInclude Include="inc\typedeff.h" />

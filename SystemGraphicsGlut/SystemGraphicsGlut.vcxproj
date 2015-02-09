@@ -79,9 +79,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="inc\sys_graphicsGlut.h" />
+    <ClInclude Include="inc\texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\sys_graphicsGlut.cpp" />
+    <ClCompile Include="src\texture.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

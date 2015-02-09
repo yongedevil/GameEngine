@@ -34,7 +34,7 @@ namespace GameEngine
 
 		virtual void init();
 		virtual void update(float dt);
-		virtual void draw(class Sys_Graphics * graphics);
+		virtual void draw();
 		virtual void destroy();
 
 		//type
@@ -56,17 +56,9 @@ namespace GameEngine
 		void removeComponent(Component * component);
 	};
 
-	/*
-	bool operator==(Entity const& ent1, Entity const& ent2)
-	{
-		return ent1.getID() == ent2.getID();
-	}
 
-	bool operator!=(Entity const& ent1, Entity const & ent2)
-	{
-		return ent1.getID() != ent2.getID();
-	}
-	*/
+	bool operator==(Entity const& ent1, Entity const& ent2);
+	bool operator!=(Entity const& ent1, Entity const & ent2);
 
 
 	template<class T>

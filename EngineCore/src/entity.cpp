@@ -27,11 +27,11 @@ void Entity::update(float dt)
 	}
 }
 
-void Entity::draw(class Sys_Graphics * graphics)
+void Entity::draw()
 {
 	for(ComponentList::iterator it = m_componentList->begin(); it != m_componentList->end(); ++it)
 	{
-		(*it)->drawComponent(graphics);
+		(*it)->drawComponent();
 	}
 }
 
@@ -71,4 +71,15 @@ void Entity::removeComponent(Component * component)
 			m_componentList->erase(it);
 		}
 	}
+}
+
+
+bool operator==(Entity const& ent1, Entity const& ent2)
+{
+	return ent1.getID() == ent2.getID();
+}
+
+bool operator!=(Entity const& ent1, Entity const & ent2)
+{
+	return ent1.getID() != ent2.getID();
 }

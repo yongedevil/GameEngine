@@ -12,9 +12,9 @@ namespace GameEngine
 		T m_vals[2];
 
 	public:
-		Vector2(T x, T y) { m_vals[0] = x; m_vals[1] = y; }
-		Vector2() : Vector2<T>(0, 0) { }
-		Vector2(Vector2<T> const& vec2) : Vector2<T>(vec2.x(), vec2.y()) { }
+		Vector2(T x, T y)				{ m_vals[0] = x;		m_vals[1] = y; }
+		Vector2()						{ m_vals[0] = 0;		m_vals[1] = 0; }
+		Vector2(Vector2<T> const& vec2)	{ m_vals[0] = vec2.x();	m_vals[1] = vec2.y(); }
 		~Vector2() { }
 
 
@@ -57,6 +57,7 @@ namespace GameEngine
 	};
 
 	typedef Vector2<float> Vector2f;
+	typedef Vector2<int> Point;
 
 
 	template<class T>

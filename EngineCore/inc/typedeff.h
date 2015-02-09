@@ -6,19 +6,18 @@ namespace GameEngine
 	typedef unsigned long EntityID;
 	typedef long ComponentID;
 
-	enum class ComponentType : short
+	typedef short CompTypeData;
+	enum class ComponentType : CompTypeData
 	{
 		COMPONENT_BASE,
-		COMPONENT_TRANSFORM,
-		//insert more types here
-		NUM_TYPES
+		COMPONENT_CUSTOM
 	};
 
-	enum class EntityType : short
+	typedef short EntTypeData;
+	enum class EntityType : EntTypeData
 	{
 		ENTITY_BASE,
-		//insert more types here
-		NUM_TYPES
+		ENTITY_CUSTOM
 	};
 }
 

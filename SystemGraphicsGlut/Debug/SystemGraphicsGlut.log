@@ -1,10 +1,14 @@
-﻿Build started 1/30/2015 10:30:49 AM.
-     1>Project "C:\Users\100723472\Documents\GitHub\GameEngine\SystemGraphicsGlut\SystemGraphicsGlut.vcxproj" on node 4 (Build target(s)).
-     1>Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\100723472\Documents\GitHub\GameEngine\Debug\SystemGraphicsGlut.lib" EngineCore.lib /NOLOGO Debug\sys_graphicsGlut.obj
-         SystemGraphicsGlut.vcxproj -> C:\Users\100723472\Documents\GitHub\GameEngine\Debug\SystemGraphicsGlut.lib
-     1>Done Building Project "C:\Users\100723472\Documents\GitHub\GameEngine\SystemGraphicsGlut\SystemGraphicsGlut.vcxproj" (Build target(s)).
+﻿Build started 2/9/2015 9:16:16 AM.
+     1>Project "C:\Users\bicely\Documents\GitHub\GameEngine\SystemGraphicsGlut\SystemGraphicsGlut.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\sys_graphicsGlut.cpp
+         sys_graphicsGlut.cpp
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\bicely\Documents\GitHub\GameEngine\Debug\SystemGraphicsGlut.lib" EngineCore.lib /NOLOGO Debug\sys_graphicsGlut.obj
+         Debug\texture.obj
+         SystemGraphicsGlut.vcxproj -> C:\Users\bicely\Documents\GitHub\GameEngine\Debug\SystemGraphicsGlut.lib
+     1>Done Building Project "C:\Users\bicely\Documents\GitHub\GameEngine\SystemGraphicsGlut\SystemGraphicsGlut.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.31
+Time Elapsed 00:00:01.23

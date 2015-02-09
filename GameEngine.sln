@@ -6,12 +6,26 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineCore", "EngineCore\EngineCore.vcxproj", "{0952E910-62E2-48B9-924B-4F8E7AF239CF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GlutMain", "GlutMain\GlutMain.vcxproj", "{B229FC3E-059C-44C2-87B1-04AB24B63CBD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D000A4E1-F2EA-463B-85CE-D49A5A8355F5} = {D000A4E1-F2EA-463B-85CE-D49A5A8355F5}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "GameEngine\GameEngine.vcxproj", "{D000A4E1-F2EA-463B-85CE-D49A5A8355F5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0952E910-62E2-48B9-924B-4F8E7AF239CF} = {0952E910-62E2-48B9-924B-4F8E7AF239CF}
+		{B4F86F71-36B2-45CB-BF61-A0B1F807EF10} = {B4F86F71-36B2-45CB-BF61-A0B1F807EF10}
+		{23D7C07A-4C4A-400A-9944-5FD71DB76F0B} = {23D7C07A-4C4A-400A-9944-5FD71DB76F0B}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SystemGraphicsGlut", "SystemGraphicsGlut\SystemGraphicsGlut.vcxproj", "{B4F86F71-36B2-45CB-BF61-A0B1F807EF10}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0952E910-62E2-48B9-924B-4F8E7AF239CF} = {0952E910-62E2-48B9-924B-4F8E7AF239CF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SystemInputGlut", "SystemInputGlut\SystemInputGlut.vcxproj", "{23D7C07A-4C4A-400A-9944-5FD71DB76F0B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0952E910-62E2-48B9-924B-4F8E7AF239CF} = {0952E910-62E2-48B9-924B-4F8E7AF239CF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

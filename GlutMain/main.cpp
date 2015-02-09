@@ -1,8 +1,8 @@
-#include <cstdlib>
-#include <GL\glut.h>
+#include <GL\freeglut.h>
 
-#include "gameEngine.h"
+//#include "miningGame.h"
 
+//using namespace GAME3011_Assignment1;
 
 void idle();
 void display();
@@ -16,21 +16,20 @@ void initlize();
 
 int main (int argc, char ** argv)
 {
-	int WindowWidth = 500;
-	int WindowHeight = 500;
+	int WindowWidth = 600;
+	int WindowHeight = 600;
 
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE);
 	glutInitWindowSize(WindowWidth, WindowHeight);
 	glutInitWindowPosition(100, 100);
-	glutCreateWindow("GAME");
+	glutCreateWindow("GAME3011_Assignment1");
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keyboard);
 	glutKeyboardUpFunc(keyboardUp);
 	glutMouseFunc(mouse);
 	glutIdleFunc(idle);
-	glClearColor(0.0, 0.0, 0.0, 0.0);
 
 	initlize();
 	glutMainLoop();
@@ -40,50 +39,45 @@ int main (int argc, char ** argv)
 
 void initlize()
 {
-	glDisable(GL_LIGHTING);
-	glEnable(GL_DEPTH_TEST);
-
-	glDisable(GL_BLEND);
-	glBlendFunc(GL_ONE, GL_ONE);
-
-	GameEngine::GEngine * engine = GameEngine::GEngine::instance();
-	engine->startup();
+	//MiningGame * game = MiningGame::instance();
+	//game->startup();
 }
 
 
 void idle()
 {
-	GameEngine::GEngine * engine = GameEngine::GEngine::instance();
-	engine->update();
+	//MiningGame * game = MiningGame::instance();
+	//game->update();
+
 	glutPostRedisplay();
 }
 
 void display()
 {
-	GameEngine::GEngine * engine = GameEngine::GEngine::instance();
-	engine->draw();
+	//MiningGame * game = MiningGame::instance();
+	//game->draw();
 }
 
 void reshape(int width, int height)
 {
-	GameEngine::GEngine * engine = GameEngine::GEngine::instance();
-	engine->reshape(width, height);
+	//MiningGame * game = MiningGame::instance();
+	//game->reshape(width, height);
 }
 
 void keyboard(unsigned char key, int x, int y)
 {
-	GameEngine::GEngine * engine = GameEngine::GEngine::instance();
-	engine->keyboard(key, GLUT_DOWN, x, y);
+	//MiningGame * game = MiningGame::instance();
+	//game->keyboard(key, GLUT_DOWN, x, y);
 }
 
 void keyboardUp(unsigned char key, int x, int y)
 {
-	GameEngine::GEngine * engine = GameEngine::GEngine::instance();
-	engine->keyboard(key, GLUT_UP, x, y);
+	//MiningGame * game = MiningGame::instance();
+	//game->keyboard(key, GLUT_UP, x, y);
 }
 
 void mouse(int button, int state, int x, int y)
 {
-	GameEngine::GEngine * engine = GameEngine::GEngine::instance();
-	engine->mouse(button, state, x, y);
+	//MiningGame * game = MiningGame::instance();
+	//game->mouse(button, state, x, y);
 }

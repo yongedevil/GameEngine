@@ -1,10 +1,13 @@
-﻿Build started 1/30/2015 10:30:49 AM.
-     1>Project "C:\Users\100723472\Documents\GitHub\GameEngine\SystemInputGlut\SystemInputGlut.vcxproj" on node 5 (Build target(s)).
-     1>Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\100723472\Documents\GitHub\GameEngine\Debug\SystemInputGlut.lib" EngineCore.lib /NOLOGO Debug\sys_inputGlut.obj
-         SystemInputGlut.vcxproj -> C:\Users\100723472\Documents\GitHub\GameEngine\Debug\SystemInputGlut.lib
-     1>Done Building Project "C:\Users\100723472\Documents\GitHub\GameEngine\SystemInputGlut\SystemInputGlut.vcxproj" (Build target(s)).
+﻿Build started 2/9/2015 9:13:20 AM.
+     1>Project "C:\Users\bicely\Documents\GitHub\GameEngine\SystemInputGlut\SystemInputGlut.vcxproj" on node 3 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\sys_inputGlut.cpp
+         sys_inputGlut.cpp
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\bicely\Documents\GitHub\GameEngine\Debug\SystemInputGlut.lib" EngineCore.lib /NOLOGO Debug\sys_inputGlut.obj
+         SystemInputGlut.vcxproj -> C:\Users\bicely\Documents\GitHub\GameEngine\Debug\SystemInputGlut.lib
+     1>Done Building Project "C:\Users\bicely\Documents\GitHub\GameEngine\SystemInputGlut\SystemInputGlut.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.26
+Time Elapsed 00:00:00.86

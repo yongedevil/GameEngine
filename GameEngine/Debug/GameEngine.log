@@ -1,10 +1,24 @@
-﻿Build started 1/30/2015 10:32:16 AM.
-     1>Project "C:\Users\100723472\Documents\GitHub\GameEngine\GameEngine\GameEngine.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2/9/2015 9:17:34 AM.
+     1>Project "C:\Users\bicely\Documents\GitHub\GameEngine\GameEngine\GameEngine.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\gameEngine.cpp
-         gameEngine.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\button.cpp src\comp_transform.cpp src\sprite.cpp
+         button.cpp
+         Generating Code...
+         Compiling...
+         sprite.cpp
+     1>c:\users\bicely\documents\github\gameengine\gameengine\src\sprite.cpp(72): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\bicely\documents\github\gameengine\gameengine\src\sprite.cpp(83): warning C4018: '<' : signed/unsigned mismatch
+         comp_transform.cpp
+     1>c:\users\bicely\documents\github\gameengine\gameengine\inc\comp_transform.h(28): warning C4172: returning address of local variable or temporary
+     1>c:\users\bicely\documents\github\gameengine\gameengine\inc\comp_transform.h(32): warning C4172: returning address of local variable or temporary
+         Generating Code...
        Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\100723472\Documents\GitHub\GameEngine\Debug\GameEngine.lib" EngineCore.lib SystemGraphicsGlut.lib SystemInputGlut.lib /NOLOGO Debug\gameEngine.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\bicely\Documents\GitHub\GameEngine\Debug\GameEngine.lib" EngineCore.lib SystemGraphicsGlut.lib SystemInputGlut.lib /NOLOGO Debug\button.obj
+         Debug\comp_transform.obj
+         Debug\engine.obj
+         Debug\sprite.obj
+         Debug\state.obj
+         Debug\stateMachine.obj
      1>SystemGraphicsGlut.lib(systemManager.obj) : warning LNK4006: "public: __thiscall GameEngine::SystemManager::SystemManager(void)" (??0SystemManager@GameEngine@@QAE@XZ) already defined in EngineCore.lib(systemManager.obj); second definition ignored
      1>SystemGraphicsGlut.lib(systemManager.obj) : warning LNK4006: "public: virtual __thiscall GameEngine::SystemManager::~SystemManager(void)" (??1SystemManager@GameEngine@@UAE@XZ) already defined in EngineCore.lib(systemManager.obj); second definition ignored
      1>SystemGraphicsGlut.lib(systemManager.obj) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
@@ -18,25 +32,19 @@
      1>SystemGraphicsGlut.lib(entityManager.obj) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
      1>SystemGraphicsGlut.lib(entity.obj) : warning LNK4006: "public: __thiscall GameEngine::Entity::Entity(void)" (??0Entity@GameEngine@@QAE@XZ) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemGraphicsGlut.lib(entity.obj) : warning LNK4006: "public: virtual __thiscall GameEngine::Entity::~Entity(void)" (??1Entity@GameEngine@@UAE@XZ) already defined in EngineCore.lib(entity.obj); second definition ignored
+     1>SystemGraphicsGlut.lib(entity.obj) : warning LNK4006: "bool __cdecl operator==(class GameEngine::Entity const &,class GameEngine::Entity const &)" (??8@YA_NABVEntity@GameEngine@@0@Z) already defined in EngineCore.lib(entity.obj); second definition ignored
+     1>SystemGraphicsGlut.lib(entity.obj) : warning LNK4006: "bool __cdecl operator!=(class GameEngine::Entity const &,class GameEngine::Entity const &)" (??9@YA_NABVEntity@GameEngine@@0@Z) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemGraphicsGlut.lib(entity.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Entity::destroy(void)" (?destroy@Entity@GameEngine@@UAEXXZ) already defined in EngineCore.lib(entity.obj); second definition ignored
-     1>SystemGraphicsGlut.lib(entity.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Entity::draw(class GameEngine::Sys_Graphics *)" (?draw@Entity@GameEngine@@UAEXPAVSys_Graphics@2@@Z) already defined in EngineCore.lib(entity.obj); second definition ignored
+     1>SystemGraphicsGlut.lib(entity.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Entity::draw(void)" (?draw@Entity@GameEngine@@UAEXXZ) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemGraphicsGlut.lib(entity.obj) : warning LNK4006: "public: class GameEngine::Component * __thiscall GameEngine::Entity::getComponent(long)" (?getComponent@Entity@GameEngine@@QAEPAVComponent@2@J@Z) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemGraphicsGlut.lib(entity.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Entity::init(void)" (?init@Entity@GameEngine@@UAEXXZ) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemGraphicsGlut.lib(entity.obj) : warning LNK4006: "public: void __thiscall GameEngine::Entity::removeComponent(class GameEngine::Component *)" (?removeComponent@Entity@GameEngine@@QAEXPAVComponent@2@@Z) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemGraphicsGlut.lib(entity.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Entity::update(float)" (?update@Entity@GameEngine@@UAEXM@Z) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemGraphicsGlut.lib(entity.obj) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>SystemGraphicsGlut.lib(comp_transform.obj) : warning LNK4006: "public: __thiscall GameEngine::Transform::Transform(void)" (??0Transform@GameEngine@@QAE@XZ) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemGraphicsGlut.lib(comp_transform.obj) : warning LNK4006: "public: virtual __thiscall GameEngine::Transform::~Transform(void)" (??1Transform@GameEngine@@UAE@XZ) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemGraphicsGlut.lib(comp_transform.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Transform::destroy(void)" (?destroy@Transform@GameEngine@@UAEXXZ) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemGraphicsGlut.lib(comp_transform.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Transform::init(class GameEngine::Entity *)" (?init@Transform@GameEngine@@UAEXPAVEntity@2@@Z) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemGraphicsGlut.lib(comp_transform.obj) : warning LNK4006: "public: void __thiscall GameEngine::Transform::rotate(class GameEngine::Quaternion<float>)" (?rotate@Transform@GameEngine@@QAEXV?$Quaternion@M@2@@Z) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemGraphicsGlut.lib(comp_transform.obj) : warning LNK4006: "public: void __thiscall GameEngine::Transform::translate(class GameEngine::Vector3<float>)" (?translate@Transform@GameEngine@@QAEXV?$Vector3@M@2@@Z) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemGraphicsGlut.lib(comp_transform.obj) : warning LNK4006: "protected: virtual void __thiscall GameEngine::Transform::update(float)" (?update@Transform@GameEngine@@MAEXM@Z) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemGraphicsGlut.lib(comp_transform.obj) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
      1>SystemGraphicsGlut.lib(component.obj) : warning LNK4006: "public: __thiscall GameEngine::Component::Component(void)" (??0Component@GameEngine@@QAE@XZ) already defined in EngineCore.lib(component.obj); second definition ignored
      1>SystemGraphicsGlut.lib(component.obj) : warning LNK4006: "public: virtual __thiscall GameEngine::Component::~Component(void)" (??1Component@GameEngine@@UAE@XZ) already defined in EngineCore.lib(component.obj); second definition ignored
-     1>SystemGraphicsGlut.lib(component.obj) : warning LNK4006: "protected: virtual void __thiscall GameEngine::Component::draw(class GameEngine::Sys_Graphics *)" (?draw@Component@GameEngine@@MAEXPAVSys_Graphics@2@@Z) already defined in EngineCore.lib(component.obj); second definition ignored
-     1>SystemGraphicsGlut.lib(component.obj) : warning LNK4006: "public: void __thiscall GameEngine::Component::drawComponent(class GameEngine::Sys_Graphics *)" (?drawComponent@Component@GameEngine@@QAEXPAVSys_Graphics@2@@Z) already defined in EngineCore.lib(component.obj); second definition ignored
+     1>SystemGraphicsGlut.lib(component.obj) : warning LNK4006: "protected: virtual void __thiscall GameEngine::Component::draw(void)" (?draw@Component@GameEngine@@MAEXXZ) already defined in EngineCore.lib(component.obj); second definition ignored
+     1>SystemGraphicsGlut.lib(component.obj) : warning LNK4006: "public: void __thiscall GameEngine::Component::drawComponent(void)" (?drawComponent@Component@GameEngine@@QAEXXZ) already defined in EngineCore.lib(component.obj); second definition ignored
      1>SystemGraphicsGlut.lib(component.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Component::init(class GameEngine::Entity *)" (?init@Component@GameEngine@@UAEXPAVEntity@2@@Z) already defined in EngineCore.lib(component.obj); second definition ignored
      1>SystemGraphicsGlut.lib(component.obj) : warning LNK4006: "public: void __thiscall GameEngine::Component::updateComponent(float)" (?updateComponent@Component@GameEngine@@QAEXM@Z) already defined in EngineCore.lib(component.obj); second definition ignored
      1>SystemGraphicsGlut.lib(component.obj) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
@@ -53,31 +61,25 @@
      1>SystemInputGlut.lib(entityManager.obj) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
      1>SystemInputGlut.lib(entity.obj) : warning LNK4006: "public: __thiscall GameEngine::Entity::Entity(void)" (??0Entity@GameEngine@@QAE@XZ) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemInputGlut.lib(entity.obj) : warning LNK4006: "public: virtual __thiscall GameEngine::Entity::~Entity(void)" (??1Entity@GameEngine@@UAE@XZ) already defined in EngineCore.lib(entity.obj); second definition ignored
+     1>SystemInputGlut.lib(entity.obj) : warning LNK4006: "bool __cdecl operator==(class GameEngine::Entity const &,class GameEngine::Entity const &)" (??8@YA_NABVEntity@GameEngine@@0@Z) already defined in EngineCore.lib(entity.obj); second definition ignored
+     1>SystemInputGlut.lib(entity.obj) : warning LNK4006: "bool __cdecl operator!=(class GameEngine::Entity const &,class GameEngine::Entity const &)" (??9@YA_NABVEntity@GameEngine@@0@Z) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemInputGlut.lib(entity.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Entity::destroy(void)" (?destroy@Entity@GameEngine@@UAEXXZ) already defined in EngineCore.lib(entity.obj); second definition ignored
-     1>SystemInputGlut.lib(entity.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Entity::draw(class GameEngine::Sys_Graphics *)" (?draw@Entity@GameEngine@@UAEXPAVSys_Graphics@2@@Z) already defined in EngineCore.lib(entity.obj); second definition ignored
+     1>SystemInputGlut.lib(entity.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Entity::draw(void)" (?draw@Entity@GameEngine@@UAEXXZ) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemInputGlut.lib(entity.obj) : warning LNK4006: "public: class GameEngine::Component * __thiscall GameEngine::Entity::getComponent(long)" (?getComponent@Entity@GameEngine@@QAEPAVComponent@2@J@Z) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemInputGlut.lib(entity.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Entity::init(void)" (?init@Entity@GameEngine@@UAEXXZ) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemInputGlut.lib(entity.obj) : warning LNK4006: "public: void __thiscall GameEngine::Entity::removeComponent(class GameEngine::Component *)" (?removeComponent@Entity@GameEngine@@QAEXPAVComponent@2@@Z) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemInputGlut.lib(entity.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Entity::update(float)" (?update@Entity@GameEngine@@UAEXM@Z) already defined in EngineCore.lib(entity.obj); second definition ignored
      1>SystemInputGlut.lib(entity.obj) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>SystemInputGlut.lib(comp_transform.obj) : warning LNK4006: "public: __thiscall GameEngine::Transform::Transform(void)" (??0Transform@GameEngine@@QAE@XZ) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemInputGlut.lib(comp_transform.obj) : warning LNK4006: "public: virtual __thiscall GameEngine::Transform::~Transform(void)" (??1Transform@GameEngine@@UAE@XZ) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemInputGlut.lib(comp_transform.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Transform::destroy(void)" (?destroy@Transform@GameEngine@@UAEXXZ) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemInputGlut.lib(comp_transform.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Transform::init(class GameEngine::Entity *)" (?init@Transform@GameEngine@@UAEXPAVEntity@2@@Z) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemInputGlut.lib(comp_transform.obj) : warning LNK4006: "public: void __thiscall GameEngine::Transform::rotate(class GameEngine::Quaternion<float>)" (?rotate@Transform@GameEngine@@QAEXV?$Quaternion@M@2@@Z) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemInputGlut.lib(comp_transform.obj) : warning LNK4006: "public: void __thiscall GameEngine::Transform::translate(class GameEngine::Vector3<float>)" (?translate@Transform@GameEngine@@QAEXV?$Vector3@M@2@@Z) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemInputGlut.lib(comp_transform.obj) : warning LNK4006: "protected: virtual void __thiscall GameEngine::Transform::update(float)" (?update@Transform@GameEngine@@MAEXM@Z) already defined in EngineCore.lib(comp_transform.obj); second definition ignored
-     1>SystemInputGlut.lib(comp_transform.obj) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
      1>SystemInputGlut.lib(component.obj) : warning LNK4006: "public: __thiscall GameEngine::Component::Component(void)" (??0Component@GameEngine@@QAE@XZ) already defined in EngineCore.lib(component.obj); second definition ignored
      1>SystemInputGlut.lib(component.obj) : warning LNK4006: "public: virtual __thiscall GameEngine::Component::~Component(void)" (??1Component@GameEngine@@UAE@XZ) already defined in EngineCore.lib(component.obj); second definition ignored
-     1>SystemInputGlut.lib(component.obj) : warning LNK4006: "protected: virtual void __thiscall GameEngine::Component::draw(class GameEngine::Sys_Graphics *)" (?draw@Component@GameEngine@@MAEXPAVSys_Graphics@2@@Z) already defined in EngineCore.lib(component.obj); second definition ignored
-     1>SystemInputGlut.lib(component.obj) : warning LNK4006: "public: void __thiscall GameEngine::Component::drawComponent(class GameEngine::Sys_Graphics *)" (?drawComponent@Component@GameEngine@@QAEXPAVSys_Graphics@2@@Z) already defined in EngineCore.lib(component.obj); second definition ignored
+     1>SystemInputGlut.lib(component.obj) : warning LNK4006: "protected: virtual void __thiscall GameEngine::Component::draw(void)" (?draw@Component@GameEngine@@MAEXXZ) already defined in EngineCore.lib(component.obj); second definition ignored
+     1>SystemInputGlut.lib(component.obj) : warning LNK4006: "public: void __thiscall GameEngine::Component::drawComponent(void)" (?drawComponent@Component@GameEngine@@QAEXXZ) already defined in EngineCore.lib(component.obj); second definition ignored
      1>SystemInputGlut.lib(component.obj) : warning LNK4006: "public: virtual void __thiscall GameEngine::Component::init(class GameEngine::Entity *)" (?init@Component@GameEngine@@UAEXPAVEntity@2@@Z) already defined in EngineCore.lib(component.obj); second definition ignored
      1>SystemInputGlut.lib(component.obj) : warning LNK4006: "public: void __thiscall GameEngine::Component::updateComponent(float)" (?updateComponent@Component@GameEngine@@QAEXM@Z) already defined in EngineCore.lib(component.obj); second definition ignored
      1>SystemInputGlut.lib(component.obj) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-         GameEngine.vcxproj -> C:\Users\100723472\Documents\GitHub\GameEngine\Debug\GameEngine.lib
-     1>Done Building Project "C:\Users\100723472\Documents\GitHub\GameEngine\GameEngine\GameEngine.vcxproj" (Build target(s)).
+         GameEngine.vcxproj -> C:\Users\bicely\Documents\GitHub\GameEngine\Debug\GameEngine.lib
+     1>Done Building Project "C:\Users\bicely\Documents\GitHub\GameEngine\GameEngine\GameEngine.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.82
+Time Elapsed 00:00:01.68

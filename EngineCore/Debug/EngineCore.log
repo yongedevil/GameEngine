@@ -1,27 +1,9 @@
-﻿Build started 1/30/2015 10:27:44 AM.
-     1>Project "C:\Users\100723472\Documents\GitHub\GameEngine\EngineCore\EngineCore.vcxproj" on node 2 (Build target(s)).
-       Project file contains ToolsVersion="12.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="4.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=291333.
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\Users\100723472\Documents\GitHub\GameEngine\inc /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\comp_transform.cpp src\component.cpp src\entity.cpp src\entityManager.cpp src\system.cpp src\systemManager.cpp
-         systemManager.cpp
-         system.cpp
-         entityManager.cpp
-         Generating Code...
-         Compiling...
-         entity.cpp
-         component.cpp
-         comp_transform.cpp
-         Generating Code...
-       Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\100723472\Documents\GitHub\GameEngine\Debug\EngineCore.lib" /NOLOGO Debug\component.obj
-         Debug\comp_transform.obj
-         Debug\entity.obj
-         Debug\entityManager.obj
-         Debug\system.obj
-         Debug\systemManager.obj
-         EngineCore.vcxproj -> C:\Users\100723472\Documents\GitHub\GameEngine\Debug\EngineCore.lib
-     1>Done Building Project "C:\Users\100723472\Documents\GitHub\GameEngine\EngineCore\EngineCore.vcxproj" (Build target(s)).
+﻿Build started 2/9/2015 9:16:16 AM.
+     1>Project "C:\Users\bicely\Documents\GitHub\GameEngine\EngineCore\EngineCore.vcxproj" on node 2 (Build target(s)).
+     1>Lib:
+         EngineCore.vcxproj -> C:\Users\bicely\Documents\GitHub\GameEngine\Debug\EngineCore.lib
+     1>Done Building Project "C:\Users\bicely\Documents\GitHub\GameEngine\EngineCore\EngineCore.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.52
+Time Elapsed 00:00:00.03

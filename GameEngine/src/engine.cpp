@@ -1,30 +1,35 @@
-#include "gameEngine.h"
+#include "engine.h"
+
+#include "sys_graphicsGlut.h"
+#include "sys_inputGlut.h"
+
+#include "vector.h"
 
 using namespace GameEngine;
 
-GEngine * GEngine::s_instance = NULL;
+Engine * Engine::s_instance = NULL;
 
-GEngine * GEngine::instance()
+Engine * Engine::instance()
 {
 	if(NULL == s_instance)
 	{
-		s_instance = new GEngine();
+		s_instance = new Engine();
 	}
 
 	return s_instance;
 }
 
-GEngine::GEngine() : lastTime(0), m_sysManager(NULL), m_entManager(NULL)
+Engine::Engine() : lastTime(0), m_sysManager(NULL), m_entManager(NULL)
 {
 }
 
-GEngine::~GEngine()
+Engine::~Engine()
 {
 	delete m_sysManager;
 	delete m_entManager;
 }
 
-void GEngine::startup()
+void Engine::startup()
 {
 	lastTime = std::time(NULL);
 	m_sysManager = new SystemManager();
@@ -35,7 +40,7 @@ void GEngine::startup()
 	m_input = m_sysManager->create<Sys_Input>(); 
 }
 
-void GEngine::shutdown()
+void Engine::shutdown()
 {
 	SystemManager::SystemList::iterator itSys;
 	EntityManager::EntityList::iterator itEnt;
@@ -60,7 +65,7 @@ void GEngine::shutdown()
 }
 
 
-void GEngine::update()
+void Engine::update()
 {
 	std::time_t curTime = std::time(NULL);
 	float dt = static_cast<float>(lastTime - curTime) / CLOCKS_PER_SEC;
@@ -80,21 +85,18 @@ void GEngine::update()
 	}
 }
 
-void GEngine::draw()
+void Engine::draw()
 {
 	if(m_graphics)
 	{
-		m_graphics->display();
+		m_graphics->displayStart();
+		m_graphics->display(m_entManager);
+		m_graphics->displayEnd();
 		
-		EntityManager::EntityList::iterator itEnt;
-		for(itEnt = m_entManager->begin(); itEnt != m_entManager->end(); ++itEnt)
-		{
-			(*itEnt)->draw(m_graphics);
-		}
 	}
 }
 
-void GEngine::reshape(int width, int height)
+void Engine::reshape(int width, int height)
 {
 	if(m_graphics)
 	{
@@ -102,7 +104,7 @@ void GEngine::reshape(int width, int height)
 	}
 }
 
-void GEngine::keyboard(unsigned char key, int state, int x, int y)
+void Engine::keyboard(unsigned char key, int state, int x, int y)
 {
 	if(m_input)
 	{
@@ -110,10 +112,25 @@ void GEngine::keyboard(unsigned char key, int state, int x, int y)
 	}
 }
 
-void GEngine::mouse(int button, int state, int x, int y)
+void Engine::mouse(int button, int state, int x, int y)
 {
 	if(m_input)
 	{
 		m_input->mouse(button, state, x, y);
 	}
+}
+
+
+int Engine::screenWidth() const
+{
+	return m_graphics->screenWidth();
+}
+int Engine::screenHeight() const
+{
+	return m_graphics->screenHeight();
+}
+
+void Engine::screenToWorld(int screenX, int screenY, float depthZ, float & worldX, float & worldY) const
+{
+	m_graphics->screenToWorld(screenX, screenY, depthZ, worldX, worldY);
 }
